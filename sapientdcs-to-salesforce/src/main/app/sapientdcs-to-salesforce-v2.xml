@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:schedulers="http://www.mulesoft.org/schema/mule/schedulers" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:data-mapper="http://www.mulesoft.org/schema/mule/ee/data-mapper" xmlns:sfdc="http://www.mulesoft.org/schema/mule/sfdc" xmlns:cloudhub="http://www.mulesoft.org/schema/mule/cloudhub" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:dcsapi="http://www.mulesoft.org/schema/mule/dcsapi" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:sapientdcs="http://www.mulesoft.org/schema/mule/sapientdcs" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.5.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/dcsapi http://www.mulesoft.org/schema/mule/dcsapi/current/mule-dcsapi.xsd
+http://www.mulesoft.org/schema/mule/sapientdcs http://www.mulesoft.org/schema/mule/sapientdcs/current/mule-sapientdcs.xsd
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
+http://www.mulesoft.org/schema/mule/cloudhub http://www.mulesoft.org/schema/mule/cloudhub/current/mule-cloudhub.xsd
+http://www.mulesoft.org/schema/mule/sfdc http://www.mulesoft.org/schema/mule/sfdc/current/mule-sfdc.xsd
+http://www.mulesoft.org/schema/mule/ee/data-mapper http://www.mulesoft.org/schema/mule/ee/data-mapper/current/mule-data-mapper.xsd
+http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
+http://www.mulesoft.org/schema/mule/schedulers http://www.mulesoft.org/schema/mule/schedulers/current/mule-schedulers.xsd">
+
+	<context:property-placeholder location="classpath:mule-app.properties"/>
+	
+	<configuration doc:name="Configuration">
+        <expression-language autoResolveVariables="true"> 
+            <!-- external -->  
+            <!-- internal -->  
+            <import class="com.capgemini.unilever.cec.sapientdcs.ContactUsRecordUtils"/>  
+        </expression-language>
+    </configuration>
+	
+    <sfdc:config name="Salesforce" username="${sdfc.api.username}" password="${sdfc.api.password}"  doc:name="Salesforce" securityToken="${sdfc.api.security.token}" url="${sdfc.api.location}" disableSessionInvalidation="true">
+        <reconnect-forever/>
+    </sfdc:config>
+    <sfdc:config name="Salesforce_WithDefaultHeader" username="${sdfc.api.username}" password="${sdfc.api.password}"  doc:name="Salesforce" securityToken="${sdfc.api.security.token}" url="${sdfc.api.location}" useDefaultRule="true" disableSessionInvalidation="true">
+        <reconnect-forever/>
+    </sfdc:config>
+    <sapientdcs:config name="SapientDCS" apiKey="${sapient.dcs.api.key}" dcsAPILocation="${sapient.dcs.api.location}" secretKey="${sapient.dcs.api.secret.key}" doc:name="SapientDCS"/>
+   
+    <cloudhub:config name="Cloudhub" doc:name="Cloudhub"/>
+    <data-mapper:config name="JSON_To_List_Account_" transformationGraphPath="json_to_list_account_.grf" doc:name="JSON_To_List_Account_"/>
+    <data-mapper:config name="JSON_To_List_Case__3" transformationGraphPath="json_to_list_case__3.grf" doc:name="JSON_To_List_Case__3"/>
+    <data-mapper:config name="JSON_To_List_Case__4" transformationGraphPath="json_to_list_case__4.grf" doc:name="JSON_To_List_Case__4"/>
+    <data-mapper:config name="JSON_To_Pojo" transformationGraphPath="json_to_pojo.grf" doc:name="JSON_To_Pojo"/>
+    <flow name="sapientdcs-to-salesforce-v2Flow1" doc:name="sapientdcs-to-salesforce-v2Flow1">
+        <poll doc:name="Poll">
+            <schedulers:cron-scheduler expression="0 0/15 * * * ? *"/>
+            <cloudhub:create-notification config-ref="Cloudhub" message="[1.1] Starting processing of Sapient DCS records" priority="INFO" doc:name="Cloudhub"/>
+        </poll>
+        <logger message="[1.1] Starting processing of Sapient DCS records" level="INFO" doc:name="announce the  flow process starting"/>
+        <sapientdcs:get config-ref="SapientDCS" entity="contactus_eu" status="0" doc:name="SapientDCS get contactus records"/>
+        <logger message="after sapient call : #[payload]" level="DEBUG" doc:name="Debug_Logger"/>
+        <choice doc:name="Sapient Failure points handling 1">
+        	<when expression="payload.equals('401')">
+        		<logger message="SAPDCS-002 : SapientDCS API returns HTTP error  401 - Unauthorized, normally this happens when the API key and secret key are wrong. Please verify them with Sapient.." level="INFO" doc:name="SAPDCS-002 : 401 4rror Logger"/>
+        	    <cloudhub:create-notification config-ref="Cloudhub" message="SAPDCS-002 : SapientDCS API returns HTTP error  401 - Unauthorized, normally this happens when the API key and secret key are wrong. Please verify them with Sapient." priority="INFO" doc:name="Cloudhub"/>
+        	</when>
+        	<when expression="payload.equals('404')">
+        		<logger message="SAPDCS-001 : Unable to reach Sapient DCS Api to fetch contactus records. HTTP Error - 404.Please check Sapientdcs connector connection configuration details." level="INFO" doc:name="SAPDCS-001 : 404 error Logger"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="SAPDCS-001 : Unable to reach Sapient DCS Api to fetch contactus records. HTTP Error - 404.Please check Sapientdcs connector connection configuration details." priority="INFO" doc:name="Cloudhub"/>
+        	</when>
+        	<when expression="payload.contains('totalResults')">
+        		<logger message="Successful communication with Sapient DCS Api to fetch contactus records. Routing to next step in the flow." level="DEBUG" doc:name="all Happy debug Logger"/>
+        	</when>
+            <otherwise>
+                <logger message="SAPDCS-001 : Unexpected response from Sapient API, routing error scenario as 404 communication error." level="INFO" doc:name="SAPDCS-001 exexpected response Logger"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="SAPDCS-001 : Unable to fetch contactus records from Sapient DCS Api. HTTP Error - 404" priority="INFO" doc:name="Cloudhub"/>
+            </otherwise>
+        </choice>
+        <enricher target="#[flowVars.myJsonMap]" doc:name="Message Enricher">
+            <json:json-to-object-transformer returnClass="java.util.HashMap" doc:name="JSON to Object"/>
+        </enricher>
+        <set-variable variableName="contactus_records" value="#[flowVars.myJsonMap.get(&quot;results&quot;)]" doc:name="contactus_records"/>
+        <logger message="Contactus records found from Sapient API : #[flowVars.contactus_records.size()]" level="INFO" doc:name="report the size of contactus records fetched"/>
+        
+        <foreach collection="#[flowVars.contactus_records]" doc:name="For Each">
+            <choice doc:name="Allow configured locale records only">
+            	<when expression="payload.get('locale').isEmpty()">
+                	<logger message="No locale found in contactus record, unable to create case without it! Skipping this one!" level="WARN" doc:name="Warn no locale found"/>
+            	</when>
+                <when expression="!('${allowed.country.locale}'.contains(payload.get('locale').toString().toLowerCase()))">
+                	<logger message="Not a locale record allowed for processing. Skipping this one!" level="WARN" doc:name="Warn this locale is not in allowed locales"/>
+                </when>
+                <otherwise>
+                    <processor-chain doc:name="Processor Chain">
+                        <flow-ref name="PROCESS-SAPIENT-RECORD-sapientdcs-to-salesforce-v2Flow" doc:name="process contactus_record"/>
+                    </processor-chain>
+                </otherwise>
+            </choice>
+        </foreach>
+    </flow>
+    <flow name="PROCESS-SAPIENT-RECORD-sapientdcs-to-salesforce-v2Flow"  processingStrategy="synchronous" doc:name="PROCESS-SAPIENT-RECORD-sapientdcs-to-salesforce-v2Flow">
+  		<set-variable variableName="contactus_record" value="#[payload]" doc:name="contactus_record"/>
+        <set-variable variableName="dcs_record_id" value="#[flowVars.contactus_record.get('_id')]" doc:name="get unprocessed SapientDCSRecord id"/>
+        <cloudhub:create-notification config-ref="Cloudhub" message="[1.3] Sapient DCS record JSON:  #[flowVars.dcs_record_id]" priority="INFO" doc:name="Cloudhub"/>
+        <logger message="[1.3] Processing Sapient DCS record with Id: #[flowVars.dcs_record_id]" level="INFO" doc:name="log the dcs-record-id being processed"/>
+        <flow-ref name="find-Market-for-Contactus-Locale-Sub-Flow" doc:name="Find Market for Case"/>
+        <set-variable variableName="familyName" value="#[org.apache.commons.lang3.StringEscapeUtils.escapeEcmaScript(flowVars.contactus_record.get('contact').get('familyName').toString())]" doc:name="set FamilyName"/>
+        <set-variable variableName="email" value="#[org.apache.commons.lang3.StringEscapeUtils.escapeEcmaScript(flowVars.contactus_record.get('contact').get('email').toString())]" doc:name="set Email"/>
+        <logger message="contact data email : #[flowVars.email] and contact data familyname :  #[flowVars.familyName]" level="DEBUG" doc:name="Debug_Logger"/>
+        <choice doc:name="Choice">
+            <when expression="!(&quot;#[flowVars.familyName]&quot;.isEmpty()) &amp;&amp; !(&quot;#[flowVars.email]&quot;.isEmpty())">
+                <logger message="family name and email avialable, proceed to create case with finding existing account or create new account flow." level="INFO" doc:name="confirm madatory contact data available"/>
+                <set-variable variableName="accountId" value="" doc:name="AccountId Reset before finding or creating account"/>
+                <set-variable variableName="personContactId" value="" doc:name="PersonContactId Reset before finding or creating account"/>
+                <set-payload value="#[flowVars.contactus_record]" doc:name="Set contactus record as Payload"/>
+                <set-variable variableName="phone" value="#[ContactUsRecordUtils.getPhoneValue(payload.get('contact').get('phoneNumbers'))]" doc:name="get phoneNumber value"/>
+                <set-variable variableName="mobile" value="#[ContactUsRecordUtils.getMobileValue(payload.get('contact').get('phoneNumbers'))]" doc:name="Get Mobile Value"/>
+                <json:object-to-json-transformer doc:name="Object to JSON"/>
+                <data-mapper:transform config-ref="JSON_To_Pojo" doc:name="ContactUs JSON To Pojo">
+                    <data-mapper:input-arguments>
+                        <data-mapper:input-argument key="phone">#[flowVars.phone]</data-mapper:input-argument>
+                    </data-mapper:input-arguments>
+                </data-mapper:transform>
+              <logger level="INFO" message="pre-validating of ContactUs record #[flowVars.dcs_record_id] !!" doc:name="log prevalidation step"/>
+                <choice doc:name="Validate any errors in contactus record">
+                	<when expression="payload.isValid()">
+                		<logger level="INFO" doc:name="Log prevalidation successful" message="ContactUS record - #[flowVars.dcs_record_id] pre-validation successful and proceeding with normal flow Case Creation!"/>
+                        <set-variable variableName="createAccountAllowed" value="#[true]" doc:name="CreateAccountAllowed"/>
+                		<flow-ref name="Find-Existing-Account-sapientdcs-to-salesforce-v2Flow" doc:name="Call Find Existing Account Flow"/>
+                        <set-payload value="#[flowVars.contactus_record]" doc:name="Set contactus record as Payload"/>
+                        <flow-ref name="Create-Case-all-data-available-path-sapientdcs-to-salesforce-v2Flow" doc:name="Call Create Case happy path flow"/>
+                	</when>
+                    <otherwise>
+                        <logger level="INFO" doc:name="Log prevalidation failures and validation error messages" message="ContactUS record - #[flowVars.dcs_record_id] pre-validation failed and proceeding with Fallback flow Case Creation! The validation errors are - [#[payload.getValidationMessages()]]"/>
+                        <choice doc:name="Check validity of contact data">
+                        	<when expression="payload.isContactDataValid()">
+                                <logger message="Attempting to find existing account or Creating account using contact data before calling create Case fallback flow for - #[flowVars.dcs_record_id]" level="INFO" doc:name="Log account creation or finding exiting account attempted"/>
+                                <set-variable variableName="createAccountAllowed" value="#[true]" doc:name="CreateAccountAllowed"/>
+                        	    <flow-ref name="Find-Existing-Account-sapientdcs-to-salesforce-v2Flow" doc:name="Call Find Existing Account Flow"/>
+                        	</when>
+                        	<otherwise>
+                                <logger message="contatct data has errors so only finding exiting account will be attempted if valid lastname and email available for - #[flowVars.dcs_record_id] !" level="INFO" doc:name="Log contact data has errors for creating account"/>
+                                <choice doc:name="Check finding existing account possible">
+                                    <when expression="#[payload.isContactDataValidForExistingAccount()]">
+                                        <logger message="Contact data has valid Lastname and Email , attempting to find existing account for - #[flowVars.dcs_record_id] ! " level="INFO" doc:name="Log attempting to find existing account"/>
+                                    	<set-variable variableName="createAccountAllowed" value="#[false]" doc:name="CreateAccountAllowed"/>
+                                		<flow-ref name="Find-Existing-Account-sapientdcs-to-salesforce-v2Flow" doc:name="Call Find Existing Account Flow"/>
+                                    </when>
+                                    <otherwise>
+                                        <logger message="Contact data has error in Lastname or Email, skipping finding existing account for - #[flowVars.dcs_record_id] ! " level="WARN" doc:name="Log attempting to find existing account is not possible"/>
+                                    </otherwise>
+                                </choice>
+                        	</otherwise>
+                        </choice>
+                        <set-payload value="#[flowVars.contactus_record]" doc:name="Set contactus record as Payload"/>
+                        <flow-ref name="Create-Case-fall-back-path-sapientdcs-to-salesforce-v2Flow" doc:name="Call Create Case Fallback flow"/>
+                    </otherwise>
+                </choice>
+            </when>
+            <otherwise>
+                <logger message="[1.5] Sapient DCS record does not contain 'familyName' and 'email'.  Skipping account creation." level="INFO" doc:name="Logger"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="[1.5] Sapient DCS record does not contain 'familyName' and 'email'.  Skipping account creation." priority="INFO" doc:name="Cloudhub"/>
+            </otherwise>
+        </choice>
+    </flow>
+    <sub-flow name="find-Market-for-Contactus-Locale-Sub-Flow" doc:name="find-Market-for-Contactus-Locale-Sub-Flow">  
+    	<set-variable variableName="locale" value="#[payload.get('locale')]" doc:name="get the locale for contactus record"/>
+        <set-variable variableName="brand" value="#[payload.get('contactUs').get('brand')]" doc:name="brand"/> 
+        <logger message="1.3.1 Trying to find Market for Case from Locale value of contactus record." level="DEBUG" doc:name="Logger"/>
+        <choice doc:name="Decide which market mapping to look">
+        	<when expression="('${george.brands}' != null &amp;&amp; '${george.brands}'.equalsIgnoreCase(flowVars.brand))">
+                <sfdc:query config-ref="Salesforce" query="dsql:SELECT ID, DefaultCaseOwnerId__c, Account_Owner_Active_Flag__c, DefaultAccountOwnerId__c FROM CEC_Case_Market_Mapping__c WHERE Locale__c = '#[flowVars.locale.toString().toLowerCase()]' AND Tag__c = 'George'" doc:name="Salesforce-George-Market mapping"/>
+        	</when>
+            <otherwise>
+                <sfdc:query config-ref="Salesforce" query="dsql:SELECT ID, DefaultCaseOwnerId__c, Account_Owner_Active_Flag__c, DefaultAccountOwnerId__c FROM CEC_Case_Market_Mapping__c WHERE Locale__c = '#[flowVars.locale.toString().toLowerCase()]' AND (Tag__c = '' OR Tag__c = 'CEC')" doc:name="Salesforce-CEC-Market mapping"/>
+            </otherwise>
+        </choice>
+		<choice doc:name="Choice">
+			<when expression="payload.size() > 0">
+                <set-variable variableName="case_mapping" value="#[payload.next()]" doc:name="Case Mapping object from Query"/>
+				<set-variable variableName="market" value="#[flowVars.case_mapping.get('Id')]" doc:name="Market Variable" />
+                <set-variable variableName="DefaultCaseOwnerId" value="#[flowVars.case_mapping.get('DefaultCaseOwnerId__c')]" doc:name="DefaultCaseOwnerId Variable"/>
+                <set-variable variableName="Account_Owner_Active_Flag" value="#[flowVars.case_mapping.get('Account_Owner_Active_Flag__c')]" doc:name="Account_Owner_Active_Flag__c Variable"/>
+                <set-variable variableName="DefaultAccountOwnerId" value="#[flowVars.case_mapping.get('DefaultAccountOwnerId__c')]" doc:name="DefaultAccountOwnerId__c Variable"/>
+				<logger message="1.3.2 Market for Case to be created found - Default case owner id : #[flowVars.DefaultCaseOwnerId]" level="INFO" doc:name="Logger" />
+			</when>
+			<otherwise>
+				<set-variable variableName="market" value="" doc:name="Market Variable" />
+				<logger message="1.3.2 Unable to find Market for Locale: #[flowVars.locale]. Impossible to create case without it! Skipping this contactus record!" level="INFO" doc:name="Logger" />
+				<cloudhub:create-notification config-ref="Cloudhub" message="1.3.4 Unable to find Market for Locale: #[flowVars.locale]. Impossible to create case without it! Skipping this contactus record!" priority="ERROR" doc:name="Cloudhub" />
+			</otherwise>
+		</choice>
+        <expression-filter expression="#[org.mule.util.StringUtils.isNotEmpty(flowVars.market)]" doc:name="Expression to skip contactus record"/>
+    </sub-flow>    
+    <flow name="Find-Existing-Account-sapientdcs-to-salesforce-v2Flow"  processingStrategy="synchronous" doc:name="Find-Existing-Account-sapientdcs-to-salesforce-v2Flow">
+        <sfdc:query config-ref="Salesforce" query="dsql:SELECT Id,PersonContactId FROM Account WHERE LastName = '#[flowVars.familyName.toString()]' AND PersonEmail = '#[flowVars.email.toString()]' Limit 1" doc:name="find existing Account"/>
+        <logger message="queryresult : #[payload.size()]" level="DEBUG" doc:name="Debug_Logger"/>
+        <choice doc:name="Choice">
+            <when expression="payload.size() &gt; 0">
+                <logger message="[1.8] Salesforce has an existing account.  Proceeding to create case." level="INFO" doc:name="Log existing account found"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="[1.8] Salesforce has an existing account.  Proceeding to create case." priority="INFO" doc:name="Cloudhub"/>
+                <set-variable variableName="account" value="#[payload.next()]" doc:name="account object"/>
+                <set-variable variableName="accountId" value="#[flowVars.account.get('Id')]" doc:name="set Account ID"/>
+                <set-variable variableName="personContactId" value="#[flowVars.account.get('PersonContactId')]" doc:name="set PersonContactID"/>
+            </when>
+            <otherwise>
+                <logger message=" [1.8] Salesforce does not have an account already." level="INFO" doc:name="Log existing account not found"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message=" [1.8] Salesforce does not have an account already." priority="INFO" doc:name="Cloudhub"/>
+                <choice doc:name="Check new account creation possible  ">
+                    <when expression="#[flowVars.createAccountAllowed]">
+                        <logger message=" [1.8] Salesforce does not have an account already.  Creating a new one." level="INFO" doc:name="Log creating new account"/>
+                        <flow-ref name="Create-Account-sapientdcs-to-salesforce-v2Flow" doc:name="Call create account Flow Reference"/>
+                    </when>
+                    <otherwise>
+                        <logger message=" [1.8.1] Creating a new account not possible due to contact data errors" level="WARN" doc:name="Log creating account is not possible"/>
+                    </otherwise>
+                </choice>
+            </otherwise>
+        </choice>
+        <choice-exception-strategy doc:name="Choice Exception Strategy">
+            <catch-exception-strategy when="exception.causedBy(org.mule.api.ConnectionException)" doc:name="Catch Exception Strategy:exception.causedBy():exception.causedBy(java.net.ConnctionException):exception.causedBy(org.mule.api.ConnectionException)">
+                <logger message="SAPDCS-003 : Access error when trying to reach Salesforce API - Error message returned is - LoginFault. Please verify the salesforce credentials." level="INFO" doc:name="Logger"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="SAPDCS-003 : Access error when trying to reach Salesforce API - Error message returned is - LoginFault. Please verify the salesforce credentials." priority="INFO" doc:name="Cloudhub"/>
+            </catch-exception-strategy>
+            <catch-exception-strategy when="exception.causedBy(org.mule.modules.salesforce.exception.SalesforceSessionExpiredException)" doc:name="Catch Exception Strategy:exception.causedBy(org.mule.modules.salesforce.exception.SalesforceSessionExpiredException):exception.causedBy(org.mule.modules.salesforce.exception.SalesforceSessionExpiredException)">
+                <logger message="SAPDCS-004 : Unexpected response from Salesforce API, Unable to continue the process flow. Please check the logs for exact salesforce API response." level="INFO" doc:name="Logger"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="SAPDCS-004 : Unexpected response from Salesforce API, Unable to continue the process flow. Please check the logs for exact salesforce API response." priority="INFO" doc:name="Cloudhub"/>
+            </catch-exception-strategy>
+            <catch-exception-strategy when="exception.causedBy(org.mule.modules.salesforce.connection.UnableToAcquireConnectionException)" doc:name="Catch Exception Strategy:exception.causedBy(org.mule.modules.salesforce.connection.UnableToAcquireConnectionException)">
+                <logger message="SAPDCS-004 : Unexpected response from Salesforce API, Unable to continue the process flow. Please check the logs for exact salesforce API response." level="INFO" doc:name="Logger"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="SAPDCS-004 : Unexpected response from Salesforce API, Unable to continue the process flow. Please check the logs for exact salesforce API response." priority="INFO" doc:name="Cloudhub"/>
+            </catch-exception-strategy>
+            <catch-exception-strategy when="exception.causedBy(	org.mule.modules.salesforce.connection.UnableToReleaseConnectionException)" doc:name="Catch Exception Strategy:exception.causedBy(	org.mule.modules.salesforce.connection.UnableToReleaseConnectionException)">
+                <logger message="SAPDCS-004 : Unexpected response from Salesforce API, Unable to continue the process flow. Please check the logs for exact salesforce API response." level="INFO" doc:name="Logger"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="SAPDCS-004 : Unexpected response from Salesforce API, Unable to continue the process flow. Please check the logs for exact salesforce API response." priority="INFO" doc:name="Cloudhub"/>
+            </catch-exception-strategy>
+        </choice-exception-strategy>
+    </flow>
+    <sub-flow name="Create-Account-flow" doc:name="Create-Account-flow">
+    	<data-mapper:transform config-ref="JSON_To_List_Account_" doc:name="JSON To List&lt;Account&gt;">
+            <data-mapper:input-arguments>
+                <data-mapper:input-argument key="recordTypeID">#[flowVars.recordTypeId]</data-mapper:input-argument>
+                <data-mapper:input-argument key="Account_Owner_Active_Flag">#[flowVars.Account_Owner_Active_Flag]</data-mapper:input-argument>
+                <data-mapper:input-argument key="phoneNumber">#[flowVars.phone]</data-mapper:input-argument>
+                <data-mapper:input-argument key="DefaultAccountOwnerId">#[flowVars.DefaultAccountOwnerId]</data-mapper:input-argument>
+                <data-mapper:input-argument key="mobile">#[flowVars.mobile]</data-mapper:input-argument>
+            </data-mapper:input-arguments>
+        </data-mapper:transform>
+        <sfdc:create config-ref="Salesforce" type="Account" doc:name="create Account">
+            <sfdc:objects ref="#[payload]"/>
+        </sfdc:create>
+    </sub-flow>
+    <sub-flow name="Find-personContactId-Flow" doc:name="Find-personContactId-Flow">
+    	<set-variable variableName="accountId" value="#[payload.get(0).id]" doc:name="set accountID"/>
+        <sfdc:query config-ref="Salesforce" query="SELECT PersonContactId FROM Account WHERE Id = '#[flowVars[&quot;accountId&quot;]]'" doc:name="Salesforce"/>
+    </sub-flow>
+    <flow name="Create-Account-sapientdcs-to-salesforce-v2Flow"  processingStrategy="synchronous" doc:name="Create-Account-sapientdcs-to-salesforce-v2Flow">
+        <sfdc:query config-ref="Salesforce" query="SELECT Id FROM RecordType WHERE DeveloperName = 'PersonAccount'" doc:name="Get recordType ID"/>
+        <logger message="RecordType id available : #[payload.size()] " level="INFO" doc:name="Log RecordType id found"/>
+        <choice doc:name="Choice">
+            <when expression="payload.size() &gt; 0">
+                <set-variable variableName="recordTypeId" value="#[payload.next().get('Id').trim()]" doc:name="set RecordTypeId"/>
+                <logger message="RecordTypeId is : #[flowVars.recordTypeId]" level="INFO" doc:name="Log RecordType id"/>
+                <logger message="[1.8] Salesforce has a suitable RecordType.  Proceeding to create account." level="DEBUG" doc:name="Debug_Logger"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="[1.8] Salesforce has a suitable RecordType.  Proceeding to create account." priority="INFO" doc:name="Cloudhub"/>
+                <set-payload value="#[flowVars.contactus_record]" doc:name="Set contactus record as Payload"/>
+                <json:object-to-json-transformer doc:name="Object to JSON"/>
+                <logger message="[1.12] Creating a new account in Salesforce." level="INFO" doc:name="Log before creating account"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="[1.12] Creating a new account in Salesforce." priority="INFO" doc:name="Cloudhub"/>
+                <flow-ref name="Create-Account-flow" doc:name="call-Create-Account-sub-Flow"/>
+                <choice doc:name="Choice">
+                    <when expression="payload.get(0).success">
+                        <logger message="[1.14] Account successfully created with Id '[#[payload.get(0).id]]'.  Proceeding to create case." level="INFO" doc:name="Log new account creation successful"/>
+                        <cloudhub:create-notification config-ref="Cloudhub" message="[1.14] Account successfully created with Id '[Id from Step 1.13]'.  Proceeding to create case." priority="INFO" doc:name="Cloudhub"/>
+                        <flow-ref name="Find-personContactId-Flow" doc:name="call-find-personContactID-subFlow Reference"/>
+                        <choice doc:name="Choice">
+                            <when expression="payload.size() &gt; 0">
+                                <logger message="personContactId found!" level="DEBUG" doc:name="Log personContactId found from newly created account"/>
+                                <set-variable variableName="personContactID" value="#[payload.next().get('PersonContactId')]" doc:name="set personContactID"/>
+                                <logger message="personContactID from query : #[flowVars.personContactID]" level="INFO" doc:name="Log personContactId"/>
+                            </when>
+                            <otherwise>
+                                <logger message="personContactId not found! Proceeding to create case with fall-back method !" level="INFO" doc:name="Log personContactId not found from newly created account"/>
+                            </otherwise>
+                        </choice>
+                    </when>
+                    <otherwise>
+                        <logger message="[1.14] Account creation failed with this error - #[payload.get(0)].  Proceeding to create case with fall-back method !" level="WARN" doc:name="Log account creation failed"/>
+                        <cloudhub:create-notification config-ref="Cloudhub" message="[1.14] Account creation failed with this error - #[payload.get(0)].  Proceeding to create case with fall-back method !" priority="WARN" doc:name="Cloudhub"/>
+                        <set-payload value="#[flowVars.contactus_record]" doc:name="Set contactus record as Payload"/>
+                        <flow-ref name="Create-Case-fall-back-path-sapientdcs-to-salesforce-v2Flow" doc:name="Call Create Case Fallback flow"/>
+                    </otherwise>
+                </choice>
+            </when>
+            <otherwise>
+                <logger message="[1.8] Salesforce does not have a RecordType with a DeveloperName of 'PersonAccount'.  Skipping Account creation and proceeding to create case through fall back flow." level="INFO" doc:name="Log recordTypeId not found"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="[1.8] Salesforce does not have a RecordType with a DeveloperName of 'PersonAccount'.  Skipping Account creation and proceeding to create case." priority="INFO" doc:name="Cloudhub"/>
+            </otherwise>
+        </choice>
+        <choice-exception-strategy doc:name="Choice Exception Strategy">
+            <catch-exception-strategy when="exception.causedBy(org.mule.api.ConnectionException)" doc:name="Catch Exception Strategy:exception.causedBy():exception.causedBy(org.mule.api.MessagingException)">
+                <logger message="SAPDCS-005 : Access error when trying to reach Salesforce API - Error message returned is - LoginFault. Please verify the salesforce credentials." level="INFO" doc:name="Logger"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="SAPDCS-005 : Access error when trying to reach Salesforce API - Error message returned is - LoginFault. Please verify the salesforce credentials." priority="INFO" doc:name="Cloudhub"/>
+            </catch-exception-strategy>
+            <catch-exception-strategy when="exception.causedBy(org.mule.modules.salesforce.exception.SalesforceSessionExpiredException)" doc:name="Catch Exception Strategy:exception.causedBy(org.mule.modules.salesforce.exception.SalesforceSessionExpiredException):exception.causedBy(org.mule.modules.salesforce.exception.SalesforceSessionExpiredException)">
+                <logger message="SAPDCS-006 : Unexpected response from Salesforce API, Unable to continue the process flow. Please check the logs for exact salesforce API response." level="INFO" doc:name="Logger"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="SAPDCS-006 : Unexpected response from Salesforce API, Unable to continue the process flow. Please check the logs for exact salesforce API response." priority="INFO" doc:name="Cloudhub"/>
+            </catch-exception-strategy>
+            <catch-exception-strategy when="exception.causedBy(org.mule.modules.salesforce.connection.UnableToAcquireConnectionException)" doc:name="Catch Exception Strategy:exception.causedBy(org.mule.modules.salesforce.connection.UnableToAcquireConnectionException)">
+                <logger message="SAPDCS-006 : Unexpected response from Salesforce API, Unable to continue the process flow. Please check the logs for exact salesforce API response." level="INFO" doc:name="Logger"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="SAPDCS-006 : Unexpected response from Salesforce API, Unable to continue the process flow. Please check the logs for exact salesforce API response." priority="INFO" doc:name="Cloudhub"/>
+            </catch-exception-strategy>
+            <catch-exception-strategy when="exception.causedBy(	org.mule.modules.salesforce.connection.UnableToReleaseConnectionException)" doc:name="Catch Exception Strategy:exception.causedBy(	org.mule.modules.salesforce.connection.UnableToReleaseConnectionException)">
+                <logger message="SAPDCS-006 : Unexpected response from Salesforce API, Unable to continue the process flow. Please check the logs for exact salesforce API response." level="INFO" doc:name="Logger"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="SAPDCS-006 : Unexpected response from Salesforce API, Unable to continue the process flow. Please check the logs for exact salesforce API response." priority="INFO" doc:name="Cloudhub"/>
+            </catch-exception-strategy>
+        </choice-exception-strategy>
+    </flow>
+    <flow name="Create-Case-all-data-available-path-sapientdcs-to-salesforce-v2Flow"  processingStrategy="synchronous" doc:name="Create-Case-all-data-available-path-sapientdcs-to-salesforce-v2Flow">
+        <logger message="[1.16] Creating a new case in Salesforce." level="INFO" doc:name="Logger"/>
+        <cloudhub:create-notification config-ref="Cloudhub" message="[1.16] Creating a new case in Salesforce." priority="INFO" doc:name="Cloudhub"/>
+        <set-variable variableName="contactus_record_with_unparsable_date" value="#[payload]" doc:name="save payload for fall back flow incase"/>
+        <json:object-to-json-transformer doc:name="Object to JSON"/>
+        <data-mapper:transform config-ref="JSON_To_List_Case__3" doc:name="JSON To List&lt;Case&gt;">
+            <data-mapper:input-arguments>
+                <data-mapper:input-argument key="accountID">#[flowVars.accountId]</data-mapper:input-argument>
+                <data-mapper:input-argument key="personContactId">#[flowVars.personContactId]</data-mapper:input-argument>
+                <data-mapper:input-argument key="market">#[flowVars.market]</data-mapper:input-argument>
+                <data-mapper:input-argument key="Case_owner_Id">#[flowVars.DefaultCaseOwnerId]</data-mapper:input-argument>
+            </data-mapper:input-arguments>
+        </data-mapper:transform>
+        <sfdc:create config-ref="Salesforce" type="Case" doc:name="Salesforce">
+            <sfdc:objects ref="#[payload]"/>
+        </sfdc:create>
+        <choice doc:name="Choice">
+            <when expression="payload.get(0).success">
+                <async doc:name="Async">
+                    <logger message="[1.18] Case successfully created on Main flow with Id '[#[payload.get(0).id]]' attaching account Id '[#[flowVars.accountId]]'.  Marking case as processed." level="INFO" doc:name="Logger"/>
+                    <cloudhub:create-notification config-ref="Cloudhub" message="[1.18] Case successfully created with Id '[Id from Step 1.17]'.  Marking case as processed." priority="INFO" doc:name="Cloudhub"/>
+                    <expression-component doc:name="set payload"><![CDATA[payload=flowVars.dcs_record_id;]]></expression-component>
+                    <flow-ref name="Update-DCS-Record-sapientdcs-to-salesforce-v2Flow" doc:name="Flow Reference"/>
+                </async>
+            </when>
+            <otherwise>
+                <logger message="[1.21] Case failed to create, see DEBUG messages : #[payload]" level="INFO" doc:name="Logger"/>
+            </otherwise>
+        </choice>
+        <choice-exception-strategy doc:name="Choice Exception Strategy">
+            <catch-exception-strategy when="exception.causedBy(org.mule.api.ConnectionException)" doc:name="Catch Exception Strategy:exception.causedBy():exception.causedBy(java.net.ConnctionException)">
+                <logger message="SAPDCS-007 : Access error when trying to reach Salesforce API - Error message returned is - LoginFault. Please verify the salesforce credentials." level="INFO" doc:name="Logger"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="SAPDCS-007 : Access error when trying to reach Salesforce API - Error message returned is - LoginFault. Please verify the salesforce credentials." priority="INFO" doc:name="Cloudhub"/>
+            </catch-exception-strategy>
+            <catch-exception-strategy when="exception.causedBy(java.text.ParseException)" doc:name="Catch Exception Strategy:exception.causedBy(java.text.ParseException)">
+                <logger message="Unparsable date identifed in contactus record, routing to create-case fall-back flow !" level="INFO" doc:name="Logger"/>
+                <set-payload value="#[flowVars.contactus_record_with_unparsable_date]" doc:name="Set Payload"/>
+                <flow-ref name="Create-Case-fall-back-path-sapientdcs-to-salesforce-v2Flow" doc:name="call create-case-fall-back flow"/>
+            </catch-exception-strategy>
+            <catch-exception-strategy when="exception.causedBy(org.mule.modules.salesforce.exception.SalesforceSessionExpiredException)" doc:name="Catch Exception Strategy:exception.causedBy(org.mule.modules.salesforce.exception.SalesforceSessionExpiredException):exception.causedBy(org.mule.modules.salesforce.exception.SalesforceSessionExpiredException)">
+                <logger message="SAPDCS-008 : Unexpected response from Salesforce API, Unable to continue the process flow. Please check the logs for exact salesforce API response." level="INFO" doc:name="Logger"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="SAPDCS-008 : Unexpected response from Salesforce API, Unable to continue the process flow. Please check the logs for exact salesforce API response." priority="INFO" doc:name="Cloudhub"/>
+            </catch-exception-strategy>
+            <catch-exception-strategy when="exception.causedBy(org.mule.modules.salesforce.connection.UnableToAcquireConnectionException)" doc:name="Catch Exception Strategy:exception.causedBy(org.mule.modules.salesforce.connection.UnableToAcquireConnectionException)">
+                <logger message="SAPDCS-008 : Unexpected response from Salesforce API, Unable to continue the process flow. Please check the logs for exact salesforce API response." level="INFO" doc:name="Logger"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="SAPDCS-008 : Unexpected response from Salesforce API, Unable to continue the process flow. Please check the logs for exact salesforce API response." priority="INFO" doc:name="Cloudhub"/>
+            </catch-exception-strategy>
+            <catch-exception-strategy when="exception.causedBy(	org.mule.modules.salesforce.connection.UnableToReleaseConnectionException)" doc:name="Catch Exception Strategy:exception.causedBy(	org.mule.modules.salesforce.connection.UnableToReleaseConnectionException)">
+                <logger message="SAPDCS-008 : Unexpected response from Salesforce API, Unable to continue the process flow. Please check the logs for exact salesforce API response." level="INFO" doc:name="Logger"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="SAPDCS-008 : Unexpected response from Salesforce API, Unable to continue the process flow. Please check the logs for exact salesforce API response." priority="INFO" doc:name="Cloudhub"/>
+            </catch-exception-strategy>
+        </choice-exception-strategy>
+    </flow>
+    <flow name="Create-Case-fall-back-path-sapientdcs-to-salesforce-v2Flow"  processingStrategy="synchronous" doc:name="Create-Case-fall-back-path-sapientdcs-to-salesforce-v2Flow">
+        <logger message="[1.15] Creating a new case in Salesforce." level="INFO" doc:name="Logger"/>
+        <cloudhub:create-notification config-ref="Cloudhub" message="[1.15] Creating a new case in Salesforce." priority="INFO" doc:name="Cloudhub"/>
+        <json:object-to-json-transformer doc:name="Object to JSON"/>
+		<data-mapper:transform config-ref="JSON_To_List_Case__4" doc:name="JSON To List&lt;Case&gt;">
+			<data-mapper:input-arguments>
+				<data-mapper:input-argument key="market">#[flowVars.market]</data-mapper:input-argument>
+                <data-mapper:input-argument key="personContactId">#[flowVars.personContactId]</data-mapper:input-argument>
+                <data-mapper:input-argument key="accountID">#[flowVars.accountId]</data-mapper:input-argument>
+                <data-mapper:input-argument key="Case_owner_Id">#[flowVars.DefaultCaseOwnerId]</data-mapper:input-argument>
+			</data-mapper:input-arguments>
+		</data-mapper:transform>        
+        <sfdc:create config-ref="Salesforce" type="Case" doc:name="Salesforce">
+            <sfdc:objects ref="#[payload]"/>
+        </sfdc:create>
+        <choice doc:name="Choice">
+            <when expression="payload.get(0).success">
+                <async doc:name="Async">
+                    <logger message="[1.18] Case successfully created with contact data in description on Fall-Back Flow with Id '[#[payload.get(0).id]]' attaching  '[#[flowVars.accountId != null ? &quot;account Id &quot;+flowVars.accountId  : &quot;No account&quot;]]'.  Marking case as processed." level="INFO" doc:name="Logger"/>
+                    <cloudhub:create-notification config-ref="Cloudhub" message="[1.18] Case successfully created with contact data in description. Marking case as processed." priority="INFO" doc:name="Cloudhub"/>
+                    <expression-component doc:name="set payload"><![CDATA[payload=flowVars.dcs_record_id;]]></expression-component>
+                    <flow-ref name="Update-DCS-Record-sapientdcs-to-salesforce-v2Flow" doc:name="Flow Reference"/>
+                </async>
+            </when>
+            <otherwise>
+                <logger message="[1.21] Case failed to create, see DEBUG messages : #[payload]" level="INFO" doc:name="Logger"/>
+            </otherwise>
+        </choice>
+        <choice-exception-strategy doc:name="Choice Exception Strategy">
+            <catch-exception-strategy when="exception.causedBy(org.mule.api.ConnectionException)" doc:name="Catch Exception Strategy:exception.causedBy():exception.causedBy(java.net.ConnctionException)">
+                <logger message="SAPDCS-009 : Access error when trying to reach Salesforce API - Error message returned is - LoginFault. Please verify the salesforce credentials." level="INFO" doc:name="Logger"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="SAPDCS-009 : Access error when trying to reach Salesforce API - Error message returned is - LoginFault. Please verify the salesforce credentials." priority="INFO" doc:name="Cloudhub"/>
+            </catch-exception-strategy>
+            <catch-exception-strategy when="exception.causedBy(org.mule.modules.salesforce.exception.SalesforceSessionExpiredException)" doc:name="Catch Exception Strategy:exception.causedBy(org.mule.modules.salesforce.exception.SalesforceSessionExpiredException):exception.causedBy(org.mule.modules.salesforce.exception.SalesforceSessionExpiredException)">
+                <logger message="SAPDCS-010 : Unexpected response from Salesforce API, Unable to continue the process flow. Please check the logs for exact salesforce API response." level="INFO" doc:name="Logger"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="SAPDCS-010 : Unexpected response from Salesforce API, Unable to continue the process flow. Please check the logs for exact salesforce API response." priority="INFO" doc:name="Cloudhub"/>
+            </catch-exception-strategy>
+            <catch-exception-strategy when="exception.causedBy(org.mule.modules.salesforce.connection.UnableToAcquireConnectionException)" doc:name="Catch Exception Strategy:exception.causedBy(org.mule.modules.salesforce.connection.UnableToAcquireConnectionException)">
+                <logger message="SAPDCS-010 : Unexpected response from Salesforce API, Unable to continue the process flow. Please check the logs for exact salesforce API response." level="INFO" doc:name="Logger"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="SAPDCS-010 : Unexpected response from Salesforce API, Unable to continue the process flow. Please check the logs for exact salesforce API response." priority="INFO" doc:name="Cloudhub"/>
+            </catch-exception-strategy>
+            <catch-exception-strategy when="exception.causedBy(	org.mule.modules.salesforce.connection.UnableToReleaseConnectionException)" doc:name="Catch Exception Strategy:exception.causedBy(	org.mule.modules.salesforce.connection.UnableToReleaseConnectionException)">
+                <logger message="SAPDCS-010 : Unexpected response from Salesforce API, Unable to continue the process flow. Please check the logs for exact salesforce API response." level="INFO" doc:name="Logger"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="SAPDCS-010 : Unexpected response from Salesforce API, Unable to continue the process flow. Please check the logs for exact salesforce API response." priority="INFO" doc:name="Cloudhub"/>
+            </catch-exception-strategy>
+        </choice-exception-strategy>
+    </flow>
+    <flow name="Update-DCS-Record-sapientdcs-to-salesforce-v2Flow"  processingStrategy="asynchronous" doc:name="Update-DCS-Record-sapientdcs-to-salesforce-v2Flow">
+        <expression-component doc:name="set update record payload"><![CDATA[payload="[\n" +
+                "        {\n" +
+                "            \"message\": \" exported to salesforce\",\n" +
+                "            \"_id\": \""+
+                payload+
+                "\",\n" +
+                "            \"rowStatus\": 1\n" +
+                "        }\n" +
+                "]";]]></expression-component>
+        <sapientdcs:put config-ref="SapientDCS" payload="#[payload]" doc:name="SapientDCS"/>
+        <choice doc:name="Sapient Failure points handling 2">
+            <when expression="payload == 401">
+        		<logger message="SAPDCS-012 : SapientDCS API returns HTTP error  401 - Unauthorized, normally this happens when the API key and secret key are wrong. Please verify them with Sapient.." level="INFO" doc:name="Logger"/>
+        	    <cloudhub:create-notification config-ref="Cloudhub" message="SAPDCS-012 : SapientDCS API returns HTTP error  401 - Unauthorized, normally this happens when the API key and secret key are wrong. Please verify them with Sapient." priority="INFO" doc:name="Cloudhub"/>
+        	</when>
+        	<when expression="payload == 404">
+        		<logger message="SAPDCS-011 : Unable to reach Sapient DCS Api to update contactus record. HTTP Error - 404.Please check Sapientdcs connector connection configuration details." level="INFO" doc:name="Logger"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="SAPDCS-011 : Unable to reach Sapient DCS Api to update contactus record. HTTP Error - 404.Please check Sapientdcs connector connection configuration details." priority="INFO" doc:name="Cloudhub"/>
+        	</when>
+        	<when expression="payload == 200">
+        	    <logger message="[1.19] Sapient DCS record marked as processed." level="INFO" doc:name="Logger"/>
+        	    <cloudhub:create-notification config-ref="Cloudhub" message="[1.19] Sapient DCS record marked as processed." priority="INFO" doc:name="Cloudhub"/>
+        	</when>
+            <otherwise>
+                <logger message="SAPDCS-011 : Unexpected response from Sapient API, routing error scenario as 404 communication error." level="INFO" doc:name="Logger"/>
+                <cloudhub:create-notification config-ref="Cloudhub" message="SAPDCS-011 : Unable to fetch contactus records from Sapient DCS Api. HTTP Error - 404" priority="INFO" doc:name="Cloudhub"/>
+            </otherwise>
+        </choice>
+    </flow>
+</mule>

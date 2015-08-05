@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?><Graph __version="3.5.0" author="root" created="Tue Apr 28 10:04:04 BST 2015" description="JSON To Pojo" guiVersion="3.4.4.P" id="1430477494433" licenseCode="Unlicensed" licenseType="Unknown" modified="Tue Apr 28 10:04:04 BST 2015" modifiedBy="root" name="JSON_To_Pojo" preview-file="${Project_Home}/src/main/resources/contactus_sample.json" revision="1.0" showComponentDetails="false">
+<Global>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/object" _dataStructure="OBJECT" _id="__id" _type="Output" id="96f7da74-5c50-41b0-9731-9695011bf4c4">
+<Record fieldDelimiter="," name="ContactUsRecord" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{}/object/brand" containerType="SINGLE" label="brand" name="brand" type="string"/>
+<Field __index="1" __sourcePath="{}/object/campaign" containerType="SINGLE" label="campaign" name="campaign" type="string"/>
+<Field __index="2" __sourcePath="{}/object/category" containerType="SINGLE" label="category" name="category" type="string"/>
+<Field __index="3" __sourcePath="{}/object/contactAge" containerType="SINGLE" label="contactAge" name="contactAge" type="string"/>
+<Field __index="4" __sourcePath="{}/object/contactBirthday" containerType="SINGLE" label="contactBirthday" name="contactBirthday" type="string"/>
+<Field __index="5" __sourcePath="{}/object/contactCountry" containerType="SINGLE" label="contactCountry" name="contactCountry" type="string"/>
+<Field __index="6" __sourcePath="{}/object/contactEmail" containerType="SINGLE" label="contactEmail" name="contactEmail" type="string"/>
+<Field __index="7" __sourcePath="{}/object/contactFamilyName" containerType="SINGLE" label="contactFamilyName" name="contactFamilyName" type="string"/>
+<Field __index="8" __sourcePath="{}/object/contactGender" containerType="SINGLE" label="contactGender" name="contactGender" type="string"/>
+<Field __index="9" __sourcePath="{}/object/contactGivenName" containerType="SINGLE" label="contactGivenName" name="contactGivenName" type="string"/>
+<Field __index="10" __sourcePath="{}/object/contactHonorificPrefix" containerType="SINGLE" label="contactHonorificPrefix" name="contactHonorificPrefix" type="string"/>
+<Field __index="11" __sourcePath="{}/object/contactLanguagePref" containerType="SINGLE" label="contactLanguagePref" name="contactLanguagePref" type="string"/>
+<Field __index="12" __sourcePath="{}/object/contactLegalAgeConfirmation" containerType="SINGLE" label="contactLegalAgeConfirmation" name="contactLegalAgeConfirmation" type="string"/>
+<Field __index="13" __sourcePath="{}/object/contactLocality" containerType="SINGLE" label="contactLocality" name="contactLocality" type="string"/>
+<Field __index="14" __sourcePath="{}/object/contactMaritalStatus" containerType="SINGLE" label="contactMaritalStatus" name="contactMaritalStatus" type="string"/>
+<Field __index="15" __sourcePath="{}/object/contactPostalCode" containerType="SINGLE" label="contactPostalCode" name="contactPostalCode" type="string"/>
+<Field __index="16" __sourcePath="{}/object/contactPrimaryPhoneNumber" containerType="SINGLE" label="contactPrimaryPhoneNumber" name="contactPrimaryPhoneNumber" type="string"/>
+<Field __index="17" __sourcePath="{}/object/contactPrimaryPhoneNumberExt" containerType="SINGLE" label="contactPrimaryPhoneNumberExt" name="contactPrimaryPhoneNumberExt" type="string"/>
+<Field __index="18" __sourcePath="{}/object/contactRegion" containerType="SINGLE" label="contactRegion" name="contactRegion" type="string"/>
+<Field __index="19" __sourcePath="{}/object/contactSecondaryPhoneNumber" containerType="SINGLE" label="contactSecondaryPhoneNumber" name="contactSecondaryPhoneNumber" type="string"/>
+<Field __index="20" __sourcePath="{}/object/contactSecondaryPhoneNumberExt" containerType="SINGLE" label="contactSecondaryPhoneNumberExt" name="contactSecondaryPhoneNumberExt" type="string"/>
+<Field __index="21" __sourcePath="{}/object/contactStreetAddress1" containerType="SINGLE" label="contactStreetAddress1" name="contactStreetAddress1" type="string"/>
+<Field __index="22" __sourcePath="{}/object/contactStreetAddress2" containerType="SINGLE" label="contactStreetAddress2" name="contactStreetAddress2" type="string"/>
+<Field __index="23" __sourcePath="{}/object/contactStreetAddress3" containerType="SINGLE" label="contactStreetAddress3" name="contactStreetAddress3" type="string"/>
+<Field __index="24" __sourcePath="{}/object/contactType" containerType="SINGLE" label="contactType" name="contactType" type="string"/>
+<Field __index="25" __sourcePath="{}/object/contactUsBrand" containerType="SINGLE" label="contactUsBrand" name="contactUsBrand" type="string"/>
+<Field __index="26" __sourcePath="{}/object/contactUsComments" containerType="SINGLE" label="contactUsComments" name="contactUsComments" type="string"/>
+<Field __index="27" __sourcePath="{}/object/contactUsContactType" containerType="SINGLE" label="contactUsContactType" name="contactUsContactType" type="string"/>
+<Field __index="28" __sourcePath="{}/object/contactUsDatePurchased" containerType="SINGLE" label="contactUsDatePurchased" name="contactUsDatePurchased" type="string"/>
+<Field __index="29" __sourcePath="{}/object/contactUsExpiryDate" containerType="SINGLE" label="contactUsExpiryDate" name="contactUsExpiryDate" type="string"/>
+<Field __index="30" __sourcePath="{}/object/contactUsFormDateTime" containerType="SINGLE" label="contactUsFormDateTime" name="contactUsFormDateTime" type="boolean"/>
+<Field __index="31" __sourcePath="{}/object/contactUsInquiryType" containerType="SINGLE" label="contactUsInquiryType" name="contactUsInquiryType" type="string"/>
+<Field __index="32" __sourcePath="{}/object/contactUsManufacturingCode" containerType="SINGLE" label="contactUsManufacturingCode" name="contactUsManufacturingCode" type="string"/>
+<Field __index="33" __sourcePath="{}/object/contactUsManufacturingCodeDetail" containerType="SINGLE" label="contactUsManufacturingCodeDetail" name="contactUsManufacturingCodeDetail" type="string"/>
+<Field __index="34" __sourcePath="{}/object/contactUsPrivacy" containerType="SINGLE" label="contactUsPrivacy" name="contactUsPrivacy" type="boolean"/>
+<Field __index="35" __sourcePath="{}/object/contactUsProduct" containerType="SINGLE" label="contactUsProduct" name="contactUsProduct" type="string"/>
+<Field __index="36" __sourcePath="{}/object/contactUsSize" containerType="SINGLE" label="contactUsSize" name="contactUsSize" type="string"/>
+<Field __index="37" __sourcePath="{}/object/contactUsStoreNamePurchasedFrom" containerType="SINGLE" label="contactUsStoreNamePurchasedFrom" name="contactUsStoreNamePurchasedFrom" type="string"/>
+<Field __index="38" __sourcePath="{}/object/contactUsSubject" containerType="SINGLE" label="contactUsSubject" name="contactUsSubject" type="string"/>
+<Field __index="39" __sourcePath="{}/object/contactUsTownPurchasedFrom" containerType="SINGLE" label="contactUsTownPurchasedFrom" name="contactUsTownPurchasedFrom" type="string"/>
+<Field __index="40" __sourcePath="{}/object/contactUsUpcCode" containerType="SINGLE" label="contactUsUpcCode" name="contactUsUpcCode" type="string"/>
+<Field __index="41" __sourcePath="{}/object/contactUsUpcCodeDetail" containerType="SINGLE" label="contactUsUpcCodeDetail" name="contactUsUpcCodeDetail" type="string"/>
+<Field __index="42" __sourcePath="{}/object/contactUsername" containerType="SINGLE" label="contactUsername" name="contactUsername" type="string"/>
+<Field __index="43" __sourcePath="{}/object/corporate" containerType="SINGLE" label="corporate" name="corporate" type="string"/>
+<Field __index="44" __sourcePath="{}/object/entity" containerType="SINGLE" label="entity" name="entity" type="string"/>
+<Field __index="45" __sourcePath="{}/object/locale" containerType="SINGLE" label="locale" name="locale" type="string"/>
+<Field __index="46" __sourcePath="{}/object/microSiteId" containerType="SINGLE" label="microSiteId" name="microSiteId" type="string"/>
+<Field __index="47" __sourcePath="{}/object/optInBrand" containerType="SINGLE" label="optInBrand" name="optInBrand" type="boolean"/>
+<Field __index="48" __sourcePath="{}/object/optInCorporate" containerType="SINGLE" label="optInCorporate" name="optInCorporate" type="boolean"/>
+<Field __index="49" __sourcePath="{}/object/optInMailAll" containerType="SINGLE" label="optInMailAll" name="optInMailAll" type="boolean"/>
+<Field __index="50" __sourcePath="{}/object/optInMailBrand" containerType="SINGLE" label="optInMailBrand" name="optInMailBrand" type="boolean"/>
+<Field __index="51" __sourcePath="{}/object/optInMailHelp" containerType="SINGLE" label="optInMailHelp" name="optInMailHelp" type="boolean"/>
+<Field __index="52" __sourcePath="{}/object/optInOnlineAll" containerType="SINGLE" label="optInOnlineAll" name="optInOnlineAll" type="boolean"/>
+<Field __index="53" __sourcePath="{}/object/optInOnlineBrand" containerType="SINGLE" label="optInOnlineBrand" name="optInOnlineBrand" type="boolean"/>
+<Field __index="54" __sourcePath="{}/object/optInS" containerType="SINGLE" label="optInS" name="optInS" type="boolean"/>
+<Field __index="55" __sourcePath="{}/object/optInSmsAll" containerType="SINGLE" label="optInSmsAll" name="optInSmsAll" type="boolean"/>
+<Field __index="56" __sourcePath="{}/object/optInSmsBrand" containerType="SINGLE" label="optInSmsBrand" name="optInSmsBrand" type="boolean"/>
+<Field __index="57" __sourcePath="{}/object/prodcutionCode" containerType="SINGLE" label="prodcutionCode" name="prodcutionCode" type="string"/>
+<Field __index="58" __sourcePath="{}/object/validationMessages" containerType="list" label="validationMessages" name="validationMessages" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/object" _dataStructure="OBJECT" _id="__id" _type="Input" id="9e5f59bf-c876-47b2-a9b5-10c76c849c27">
+<Record fieldDelimiter="," name="object" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{}/object/locale" containerType="SINGLE" label="locale" name="locale" type="string"/>
+<Field __index="1" __sourcePath="{}/object/entity" containerType="SINGLE" label="entity" name="entity" type="string"/>
+<Field __index="2" __sourcePath="{}/object/brand" containerType="SINGLE" label="brand" name="brand" type="string"/>
+<Field __index="3" __sourcePath="{}/object/category" containerType="SINGLE" label="category" name="category" type="string"/>
+<Field __index="4" __sourcePath="{}/object/contactUs/brand" containerType="SINGLE" label="brand" name="brand_1" type="string"/>
+<Field __index="5" __sourcePath="{}/object/contactUs/inquiryType" containerType="SINGLE" label="inquiryType" name="inquiryType" type="string"/>
+<Field __index="6" __sourcePath="{}/object/contactUs/comments" containerType="SINGLE" label="comments" name="comments" type="string"/>
+<Field __index="7" __sourcePath="{}/object/contactUs/product" containerType="SINGLE" label="product" name="product" type="string"/>
+<Field __index="8" __sourcePath="{}/object/contactUs/size" containerType="SINGLE" label="size" name="size" type="string"/>
+<Field __index="9" __sourcePath="{}/object/contactUs/datePurchased" containerType="SINGLE" label="datePurchased" name="datePurchased" type="string"/>
+<Field __index="10" __sourcePath="{}/object/contactUs/upcCode" containerType="SINGLE" label="upcCode" name="upcCode" type="string"/>
+<Field __index="11" __sourcePath="{}/object/contactUs/upcCodeDetail" containerType="SINGLE" label="upcCodeDetail" name="upcCodeDetail" type="string"/>
+<Field __index="12" __sourcePath="{}/object/contactUs/expiryDate" containerType="SINGLE" label="expiryDate" name="expiryDate" type="string"/>
+<Field __index="13" __sourcePath="{}/object/contactUs/manufacturingCode" containerType="SINGLE" label="manufacturingCode" name="manufacturingCode" type="string"/>
+<Field __index="14" __sourcePath="{}/object/contactUs/manufacturingCodeDetail" containerType="SINGLE" label="manufacturingCodeDetail" name="manufacturingCodeDetail" type="string"/>
+<Field __index="15" __sourcePath="{}/object/contactUs/storeNamePurchasedFrom" containerType="SINGLE" label="storeNamePurchasedFrom" name="storeNamePurchasedFrom" type="string"/>
+<Field __index="16" __sourcePath="{}/object/contact/Id" containerType="SINGLE" label="Id" name="Id" type="string"/>
+<Field __index="17" __sourcePath="{}/object/contact/email" containerType="SINGLE" label="email" name="email" type="string"/>
+<Field __index="18" __sourcePath="{}/object/contact/gender" containerType="SINGLE" label="gender" name="gender" type="string"/>
+<Field __index="19" __sourcePath="{}/object/contact/honorificPrefix" containerType="SINGLE" label="honorificPrefix" name="honorificPrefix" type="string"/>
+<Field __index="20" __sourcePath="{}/object/contact/givenName" containerType="SINGLE" label="givenName" name="givenName" type="string"/>
+<Field __index="21" __sourcePath="{}/object/contact/familyName" containerType="SINGLE" label="familyName" name="familyName" type="string"/>
+<Field __index="22" __sourcePath="{}/object/contact/country" containerType="SINGLE" label="country" name="country" type="string"/>
+<Field __index="23" __sourcePath="{}/object/contact/streetAddress1" containerType="SINGLE" label="streetAddress1" name="streetAddress1" type="string"/>
+<Field __index="24" __sourcePath="{}/object/contact/streetAddress2" containerType="SINGLE" label="streetAddress2" name="streetAddress2" type="string"/>
+<Field __index="25" __sourcePath="{}/object/contact/locality" containerType="SINGLE" label="locality" name="locality" type="string"/>
+<Field __index="26" __sourcePath="{}/object/contact/region" containerType="SINGLE" label="region" name="region" type="string"/>
+<Field __index="27" __sourcePath="{}/object/contact/postalCode" containerType="SINGLE" label="postalCode" name="postalCode" type="string"/>
+<Field __index="28" __sourcePath="{}/object/contact/languagePref" containerType="SINGLE" label="languagePref" name="languagePref" type="string"/>
+<Field __index="31" __sourcePath="{}/object/optIn/brand" containerType="SINGLE" label="brand" name="brand_2" type="boolean"/>
+<Field __index="32" __sourcePath="{}/object/optIn/corporate" containerType="SINGLE" label="corporate" name="corporate" type="boolean"/>
+<Field __index="33" __sourcePath="{}/object/optIn/onlineBrand" containerType="SINGLE" label="onlineBrand" name="onlineBrand" type="boolean"/>
+<Field __index="34" __sourcePath="{}/object/optIn/onlineAll" containerType="SINGLE" label="onlineAll" name="onlineAll" type="boolean"/>
+<Field __index="35" __sourcePath="{}/object/optIn/mailBrand" containerType="SINGLE" label="mailBrand" name="mailBrand" type="boolean"/>
+<Field __index="36" __sourcePath="{}/object/optIn/mailAll" containerType="SINGLE" label="mailAll" name="mailAll" type="boolean"/>
+<Field __index="37" __sourcePath="{}/object/optIn/smsBrand" containerType="SINGLE" label="smsBrand" name="smsBrand" type="boolean"/>
+<Field __index="38" __sourcePath="{}/object/optIn/smsAll" containerType="SINGLE" label="smsAll" name="smsAll" type="boolean"/>
+<Field __index="39" __sourcePath="{}/object/campaign" containerType="SINGLE" label="campaign" name="campaign" type="string"/>
+<Field __index="40" __sourcePath="{}/object/microSiteId" containerType="SINGLE" label="microSiteId" name="microSiteId" type="string"/>
+<Field __index="41" __sourcePath="{}/object/rowStatus" containerType="SINGLE" label="rowStatus" name="rowStatus" type="integer"/>
+<Field __index="42" __sourcePath="{}/object/modifiedDate" containerType="SINGLE" label="modifiedDate" name="modifiedDate" type="string"/>
+<Field __index="43" __sourcePath="{}/object/createdDate" containerType="SINGLE" label="createdDate" name="createdDate" type="string"/>
+<Field __index="44" __sourcePath="{}/object/_x005fid" containerType="SINGLE" label="_id" name="_id" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="29" __referenceCounter="0" __sourcePath="{}/object/contact/phoneNumbers" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="9e5f59bf-c876-47b2-a9b5-10c76c849c27" _parent_id="__parent_id" _type="Input" id="3f0b8552-52b4-42a5-a3fe-db2c4d888313">
+<Record fieldDelimiter="," name="phoneNumbers" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="29" __sourcePath="{}/object/contact/phoneNumbers/value" containerType="SINGLE" label="value" name="value" type="string"/>
+<Field __index="30" __sourcePath="{}/object/contact/phoneNumbers/type" containerType="SINGLE" label="type" name="type" type="string"/>
+</Record>
+</Metadata>
+<Dictionary>
+<Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
+<Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
+<Entry dictval.__javaType="java.lang.String" id="DictionaryEntry2" input="true" name="phone" output="false" type="string"/>
+</Dictionary>
+</Global>
+<Phase number="0">
+<Node cacheInMemory="true" enabled="enabled" fileURL="dict:outputPayload" guiName="Pojo WRITER" guiX="900" guiY="20" id="BEAN_WRITER0" type="BEAN_WRITER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<object xmlns:clover="http://www.cloveretl.com/ns/xmlmapping" clover:inPort="0">
+  <brand>$0.brand</brand>
+  <campaign>$0.campaign</campaign>
+  <category>$0.category</category>
+  <contactAge>$0.contactAge</contactAge>
+  <contactBirthday>$0.contactBirthday</contactBirthday>
+  <contactCountry>$0.contactCountry</contactCountry>
+  <contactEmail>$0.contactEmail</contactEmail>
+  <contactFamilyName>$0.contactFamilyName</contactFamilyName>
+  <contactGender>$0.contactGender</contactGender>
+  <contactGivenName>$0.contactGivenName</contactGivenName>
+  <contactHonorificPrefix>$0.contactHonorificPrefix</contactHonorificPrefix>
+  <contactLanguagePref>$0.contactLanguagePref</contactLanguagePref>
+  <contactLegalAgeConfirmation>$0.contactLegalAgeConfirmation</contactLegalAgeConfirmation>
+  <contactLocality>$0.contactLocality</contactLocality>
+  <contactMaritalStatus>$0.contactMaritalStatus</contactMaritalStatus>
+  <contactPostalCode>$0.contactPostalCode</contactPostalCode>
+  <contactPrimaryPhoneNumber>$0.contactPrimaryPhoneNumber</contactPrimaryPhoneNumber>
+  <contactPrimaryPhoneNumberExt>$0.contactPrimaryPhoneNumberExt</contactPrimaryPhoneNumberExt>
+  <contactRegion>$0.contactRegion</contactRegion>
+  <contactSecondaryPhoneNumber>$0.contactSecondaryPhoneNumber</contactSecondaryPhoneNumber>
+  <contactSecondaryPhoneNumberExt>$0.contactSecondaryPhoneNumberExt</contactSecondaryPhoneNumberExt>
+  <contactStreetAddress1>$0.contactStreetAddress1</contactStreetAddress1>
+  <contactStreetAddress2>$0.contactStreetAddress2</contactStreetAddress2>
+  <contactStreetAddress3>$0.contactStreetAddress3</contactStreetAddress3>
+  <contactType>$0.contactType</contactType>
+  <contactUsBrand>$0.contactUsBrand</contactUsBrand>
+  <contactUsComments>$0.contactUsComments</contactUsComments>
+  <contactUsContactType>$0.contactUsContactType</contactUsContactType>
+  <contactUsDatePurchased>$0.contactUsDatePurchased</contactUsDatePurchased>
+  <contactUsExpiryDate>$0.contactUsExpiryDate</contactUsExpiryDate>
+  <contactUsFormDateTime>$0.contactUsFormDateTime</contactUsFormDateTime>
+  <contactUsInquiryType>$0.contactUsInquiryType</contactUsInquiryType>
+  <contactUsManufacturingCode>$0.contactUsManufacturingCode</contactUsManufacturingCode>
+  <contactUsManufacturingCodeDetail>$0.contactUsManufacturingCodeDetail</contactUsManufacturingCodeDetail>
+  <contactUsPrivacy>$0.contactUsPrivacy</contactUsPrivacy>
+  <contactUsProduct>$0.contactUsProduct</contactUsProduct>
+  <contactUsSize>$0.contactUsSize</contactUsSize>
+  <contactUsStoreNamePurchasedFrom>$0.contactUsStoreNamePurchasedFrom</contactUsStoreNamePurchasedFrom>
+  <contactUsSubject>$0.contactUsSubject</contactUsSubject>
+  <contactUsTownPurchasedFrom>$0.contactUsTownPurchasedFrom</contactUsTownPurchasedFrom>
+  <contactUsUpcCode>$0.contactUsUpcCode</contactUsUpcCode>
+  <contactUsUpcCodeDetail>$0.contactUsUpcCodeDetail</contactUsUpcCodeDetail>
+  <contactUsername>$0.contactUsername</contactUsername>
+  <corporate>$0.corporate</corporate>
+  <entity>$0.entity</entity>
+  <locale>$0.locale</locale>
+  <microSiteId>$0.microSiteId</microSiteId>
+  <optInBrand>$0.optInBrand</optInBrand>
+  <optInCorporate>$0.optInCorporate</optInCorporate>
+  <optInMailAll>$0.optInMailAll</optInMailAll>
+  <optInMailBrand>$0.optInMailBrand</optInMailBrand>
+  <optInMailHelp>$0.optInMailHelp</optInMailHelp>
+  <optInOnlineAll>$0.optInOnlineAll</optInOnlineAll>
+  <optInOnlineBrand>$0.optInOnlineBrand</optInOnlineBrand>
+  <optInS>$0.optInS</optInS>
+  <optInSmsAll>$0.optInSmsAll</optInSmsAll>
+  <optInSmsBrand>$0.optInSmsBrand</optInSmsBrand>
+  <prodcutionCode>$0.prodcutionCode</prodcutionCode>
+  <clover:collection clover:name="validationMessages">$0.validationMessages</clover:collection>
+</object>]]></attr>
+<attr name="_data_format"><![CDATA[JAVA]]></attr>
+<attr name="schema"><![CDATA[<?xml version="1.0" encoding="UTF-8"?><schema-object>
+  <typed-object-ref type-ref="com.capgemini.unilever.cec.sapientdcs.ContactUsRecord"/>
+  <typed-object type="java.lang.Boolean"/>
+  <typed-object type="com.capgemini.unilever.cec.sapientdcs.ContactUsRecord">
+    <typed-object-ref name="brand" type-ref="java.lang.String"/>
+    <typed-object-ref name="campaign" type-ref="java.lang.String"/>
+    <typed-object-ref name="category" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactAge" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactBirthday" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactCountry" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactEmail" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactFamilyName" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactGender" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactGivenName" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactHonorificPrefix" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactLanguagePref" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactLegalAgeConfirmation" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactLocality" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactMaritalStatus" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactPostalCode" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactPrimaryPhoneNumber" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactPrimaryPhoneNumberExt" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactRegion" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactSecondaryPhoneNumber" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactSecondaryPhoneNumberExt" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactStreetAddress1" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactStreetAddress2" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactStreetAddress3" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactType" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactUsBrand" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactUsComments" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactUsContactType" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactUsDatePurchased" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactUsExpiryDate" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactUsFormDateTime" type-ref="java.lang.Boolean"/>
+    <typed-object-ref name="contactUsInquiryType" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactUsManufacturingCode" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactUsManufacturingCodeDetail" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactUsPrivacy" type-ref="java.lang.Boolean"/>
+    <typed-object-ref name="contactUsProduct" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactUsSize" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactUsStoreNamePurchasedFrom" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactUsSubject" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactUsTownPurchasedFrom" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactUsUpcCode" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactUsUpcCodeDetail" type-ref="java.lang.String"/>
+    <typed-object-ref name="contactUsername" type-ref="java.lang.String"/>
+    <typed-object-ref name="corporate" type-ref="java.lang.String"/>
+    <typed-object-ref name="entity" type-ref="java.lang.String"/>
+    <typed-object-ref name="locale" type-ref="java.lang.String"/>
+    <typed-object-ref name="microSiteId" type-ref="java.lang.String"/>
+    <typed-object-ref name="optInBrand" type-ref="java.lang.Boolean"/>
+    <typed-object-ref name="optInCorporate" type-ref="java.lang.Boolean"/>
+    <typed-object-ref name="optInMailAll" type-ref="java.lang.Boolean"/>
+    <typed-object-ref name="optInMailBrand" type-ref="java.lang.Boolean"/>
+    <typed-object-ref name="optInMailHelp" type-ref="java.lang.Boolean"/>
+    <typed-object-ref name="optInOnlineAll" type-ref="java.lang.Boolean"/>
+    <typed-object-ref name="optInOnlineBrand" type-ref="java.lang.Boolean"/>
+    <typed-object-ref name="optInS" type-ref="java.lang.Boolean"/>
+    <typed-object-ref name="optInSmsAll" type-ref="java.lang.Boolean"/>
+    <typed-object-ref name="optInSmsBrand" type-ref="java.lang.Boolean"/>
+    <typed-object-ref name="prodcutionCode" type-ref="java.lang.String"/>
+    <schema-collection name="validationMessages" type="java.util.List">
+      <typed-object-ref type-ref="java.lang.String"/>
+    </schema-collection>
+  </typed-object>
+  <typed-object type="java.lang.String"/>
+</schema-object>
+]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Foreach 'object' -&gt; 'object'" guiX="460" guiY="20" id="FOREACH_OBJECT_OBJECT" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+//END -> DO NOT REMOVE
+output.locale = input.locale;
+output.entity = input.entity;
+output.category = input.category;
+output.corporate = input.corporate;
+output.campaign = input.campaign;
+output.microSiteId = input.microSiteId;
+output.brand = input.brand_1;
+output.prodcutionCode = input.manufacturingCode;
+output.contactUsExpiryDate = input.expiryDate;
+output.contactUsDatePurchased = input.datePurchased;
+output.contactEmail = input.email;
+output.contactHonorificPrefix = input.honorificPrefix;
+output.contactCountry = input.country;
+output.contactGivenName = input.givenName;
+output.contactFamilyName = input.familyName;
+output.contactStreetAddress1 = input.streetAddress1;
+output.contactStreetAddress2 = input.streetAddress2;
+output.contactLocality = input.locality;
+output.contactRegion = input.region;
+output.contactPostalCode = input.postalCode;
+output.contactLanguagePref = input.languagePref;
+output.contactPrimaryPhoneNumber = inputArguments.phone;]]></attr>
+</Node>
+<Node charset="UTF-8" enabled="enabled" fileURL="dict:inputPayload" guiName="JSON READER" guiX="20" guiY="20" id="JSON_READER0" type="JSON_READER">
+<attr name="__isJsonSchema"><![CDATA[false]]></attr>
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context xpath="/root">
+  <Context outPort="0" sequenceField="__id" xpath="object">
+    <Mapping cloverField="locale" trim="true" xpath="locale"/>
+    <Mapping cloverField="entity" trim="true" xpath="entity"/>
+    <Mapping cloverField="brand" trim="true" xpath="brand"/>
+    <Mapping cloverField="category" trim="true" xpath="category"/>
+    <Mapping cloverField="brand_1" trim="true" xpath="contactUs/brand"/>
+    <Mapping cloverField="inquiryType" trim="true" xpath="contactUs/inquiryType"/>
+    <Mapping cloverField="comments" trim="true" xpath="contactUs/comments"/>
+    <Mapping cloverField="product" trim="true" xpath="contactUs/product"/>
+    <Mapping cloverField="size" trim="true" xpath="contactUs/size"/>
+    <Mapping cloverField="datePurchased" trim="true" xpath="contactUs/datePurchased"/>
+    <Mapping cloverField="upcCode" trim="true" xpath="contactUs/upcCode"/>
+    <Mapping cloverField="upcCodeDetail" trim="true" xpath="contactUs/upcCodeDetail"/>
+    <Mapping cloverField="expiryDate" trim="true" xpath="contactUs/expiryDate"/>
+    <Mapping cloverField="manufacturingCode" trim="true" xpath="contactUs/manufacturingCode"/>
+    <Mapping cloverField="manufacturingCodeDetail" trim="true" xpath="contactUs/manufacturingCodeDetail"/>
+    <Mapping cloverField="storeNamePurchasedFrom" trim="true" xpath="contactUs/storeNamePurchasedFrom"/>
+    <Mapping cloverField="Id" trim="true" xpath="contact/Id"/>
+    <Mapping cloverField="email" trim="true" xpath="contact/email"/>
+    <Mapping cloverField="gender" trim="true" xpath="contact/gender"/>
+    <Mapping cloverField="honorificPrefix" trim="true" xpath="contact/honorificPrefix"/>
+    <Mapping cloverField="givenName" trim="true" xpath="contact/givenName"/>
+    <Mapping cloverField="familyName" trim="true" xpath="contact/familyName"/>
+    <Mapping cloverField="country" trim="true" xpath="contact/country"/>
+    <Mapping cloverField="streetAddress1" trim="true" xpath="contact/streetAddress1"/>
+    <Mapping cloverField="streetAddress2" trim="true" xpath="contact/streetAddress2"/>
+    <Mapping cloverField="locality" trim="true" xpath="contact/locality"/>
+    <Mapping cloverField="region" trim="true" xpath="contact/region"/>
+    <Mapping cloverField="postalCode" trim="true" xpath="contact/postalCode"/>
+    <Mapping cloverField="languagePref" trim="true" xpath="contact/languagePref"/>
+    <Mapping cloverField="brand_2" trim="true" xpath="optIn/brand"/>
+    <Mapping cloverField="corporate" trim="true" xpath="optIn/corporate"/>
+    <Mapping cloverField="onlineBrand" trim="true" xpath="optIn/onlineBrand"/>
+    <Mapping cloverField="onlineAll" trim="true" xpath="optIn/onlineAll"/>
+    <Mapping cloverField="mailBrand" trim="true" xpath="optIn/mailBrand"/>
+    <Mapping cloverField="mailAll" trim="true" xpath="optIn/mailAll"/>
+    <Mapping cloverField="smsBrand" trim="true" xpath="optIn/smsBrand"/>
+    <Mapping cloverField="smsAll" trim="true" xpath="optIn/smsAll"/>
+    <Mapping cloverField="campaign" trim="true" xpath="campaign"/>
+    <Mapping cloverField="microSiteId" trim="true" xpath="microSiteId"/>
+    <Mapping cloverField="rowStatus" trim="true" xpath="rowStatus"/>
+    <Mapping cloverField="modifiedDate" trim="true" xpath="modifiedDate"/>
+    <Mapping cloverField="createdDate" trim="true" xpath="createdDate"/>
+    <Mapping cloverField="_id" trim="true" xpath="_x005fid"/>
+  </Context>
+</Context>
+]]></attr>
+<attr name="_data_format"><![CDATA[JSON]]></attr>
+<attr name="jsonSchemaURL"><![CDATA[./src/main/resources/contactus_sample.json]]></attr>
+</Node>
+<Edge debugMode="true" fromNode="FOREACH_OBJECT_OBJECT:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="96f7da74-5c50-41b0-9731-9695011bf4c4" outPort="Port 0 (out)" toNode="BEAN_WRITER0:0"/>
+<Edge debugMode="true" fromNode="JSON_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="9e5f59bf-c876-47b2-a9b5-10c76c849c27" outPort="Port 0 (out)" toNode="FOREACH_OBJECT_OBJECT:0"/>
+</Phase>
+</Graph>

@@ -1,0 +1,64 @@
+{
+  "locale": "no-no",
+  "entity": "contactus_eu",
+  "brand": "Knorr",
+  "category": "beauty",
+  "contactUs": {
+    "brand": "Knorr",
+    "inquiryType": "Product Concern",
+    "comments": "This is the comment text for integration test",
+    "product": "Knorr Hot Garlic",
+    "size": "43g",
+    "datePurchased": "2014/12/27",
+    "upcCode": "8765432156",
+    "upcCodeDetail": "Full",
+    "expiryDate": "01/03/2015",
+    "manufacturingCode": "12345",
+    "manufacturingCodeDetail": "Not Available",
+    "storeNamePurchasedFrom": "Tesco"
+  },
+  "contact": {
+    "Id": "12345",
+    "email": "test@unilever.no-no.com",
+    "gender": "M",
+    "honorificPrefix": "MR",
+    "givenName": "Test-NO",
+    "familyName": "Test",
+    "country": "UK",
+    "streetAddress1": "Unilever House",
+    "streetAddress2": "Springfield Drive",
+    "locality": "Leatherhead",
+    "region": "London",
+    "postalCode": "KT22 7GR",
+    "languagePref": "English",
+    "phoneNumbers": [
+      {
+        "value": "01234567890",
+        "type": "Phone"
+      },
+      {
+        "value": "07123456789",
+        "type": "Mobile"
+      }
+    ]
+  },
+  "optIn": {
+  	"brand": false,
+    "corporate": false,
+    "onlineBrand": false,
+    "onlineAll": false,
+    "mailBrand": false,
+    "mailAll": false,
+    "smsBrand": false,
+    "smsAll": false,
+    "consentComplain":false,
+    "consentMarketing":false
+  },
+  "campaign": "campaign",
+  "microSiteId": "test",
+  "rowStatus": 0,
+  "info": null,
+  "modifiedDate": "2015-01-12T13:53:35",
+  "createdDate": "2015-01-12T13:53:35",
+  "_id": "ca8b585d-c020-4ba8-a068-801527226b40"
+}

@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?><Graph __version="3.5.0" author="arun" created="Mon Oct 13 09:37:57 BST 2014" description="JSON To List&lt;Case&gt;" guiVersion="3.4.4.P" id="1413224397700" licenseCode="Unlicensed" licenseType="Unknown" modified="Mon Oct 13 09:37:57 BST 2014" modifiedBy="arun" name="JSON_To_List_Case_" preview-file="${Project_Home}/src/main/resources/contactus_sample.json" revision="1.0" showComponentDetails="false">
+<Global>
+<Metadata __index="0" __referenceCounter="2" __sourcePath="{}/Case" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _type="Output" id="7dd7080d-5474-41e0-93d6-8892b076f117">
+<Record fieldDelimiter="," name="Case" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __implementationClass="java.lang.String" __index="16" __sourcePath="{}/Case/AccountId" containerType="SINGLE" label="AccountId" name="AccountId" type="string"/>
+<Field __implementationClass="java.lang.String" __index="21" __sourcePath="{}/Case/Action_x005fTaken_x005f_x005fc" containerType="SINGLE" label="Action_Taken__c" name="Action_Taken__c" type="string"/>
+<Field __implementationClass="java.lang.String" __index="11" __sourcePath="{}/Case/Alert_x005fAction_x005fId_x005f_x005fc" containerType="SINGLE" label="Alert_Action_Id__c" name="Alert_Action_Id__c" type="string"/>
+<Field __implementationClass="java.lang.String" __index="49" __sourcePath="{}/Case/AssetId" containerType="SINGLE" label="AssetId" name="AssetId" type="string"/>
+<Field __implementationClass="java.lang.String" __index="1" __sourcePath="{}/Case/Brand_x005f_x005fc" containerType="SINGLE" label="Brand__c" name="Brand__c" type="string"/>
+<Field __implementationClass="java.lang.String" __index="13" __sourcePath="{}/Case/BusinessHoursId" containerType="SINGLE" label="BusinessHoursId" name="BusinessHoursId" type="string"/>
+<Field __implementationClass="java.lang.String" __index="9" __sourcePath="{}/Case/CaseNumber" containerType="SINGLE" label="CaseNumber" name="CaseNumber" type="string"/>
+<Field __implementationClass="java.lang.String" __index="30" __sourcePath="{}/Case/Case_x005fBrand_x005fMapping_x005f_x005fc" containerType="SINGLE" label="Case_Brand_Mapping__c" name="Case_Brand_Mapping__c" type="string"/>
+<Field __dmType="Calendar" __implementationClass="java.util.Calendar" __index="38" __sourcePath="{}/Case/ClosedDate" containerType="SINGLE" label="ClosedDate" name="ClosedDate" type="string"/>
+<Field __implementationClass="java.lang.String" __index="22" __sourcePath="{}/Case/Communication_x005fSalutation_x005f_x005fc" containerType="SINGLE" label="Communication_Salutation__c" name="Communication_Salutation__c" type="string"/>
+<Field __implementationClass="java.lang.String" __index="46" __sourcePath="{}/Case/ContactId" containerType="SINGLE" label="ContactId" name="ContactId" type="string"/>
+<Field __index="12" __sourcePath="{}/Case/Country_x005f_x005fc" containerType="SINGLE" label="Country__c" name="Country__c" type="string"/>
+<Field __implementationClass="java.lang.String" __index="17" __sourcePath="{}/Case/CreatedById" containerType="SINGLE" label="CreatedById" name="CreatedById" type="string"/>
+<Field __dmType="Calendar" __implementationClass="java.util.Calendar" __index="45" __sourcePath="{}/Case/CreatedDate" containerType="SINGLE" label="CreatedDate" name="CreatedDate" type="string"/>
+<Field __implementationClass="java.lang.String" __index="34" __sourcePath="{}/Case/Description" containerType="SINGLE" label="Description" name="Description" type="string"/>
+<Field __implementationClass="java.lang.String" __index="27" __sourcePath="{}/Case/External_x005fImage_x005fAddress_x005f_x005fc" containerType="SINGLE" label="External_Image_Address__c" name="External_Image_Address__c" type="string"/>
+<Field __implementationClass="java.lang.Boolean" __index="44" __sourcePath="{}/Case/HasCommentsUnreadByOwner" containerType="SINGLE" label="HasCommentsUnreadByOwner" name="HasCommentsUnreadByOwner" type="boolean"/>
+<Field __implementationClass="java.lang.Boolean" __index="4" __sourcePath="{}/Case/HasSelfServiceComments" containerType="SINGLE" label="HasSelfServiceComments" name="HasSelfServiceComments" type="boolean"/>
+<Field __implementationClass="java.lang.String" __index="20" __sourcePath="{}/Case/Id" containerType="SINGLE" label="Id" name="Id" type="string"/>
+<Field __implementationClass="java.lang.Boolean" __index="8" __sourcePath="{}/Case/Inconsistent_x005fCase_x005f_x005fc" containerType="SINGLE" label="Inconsistent_Case__c" name="Inconsistent_Case__c" type="boolean"/>
+<Field __implementationClass="java.lang.Boolean" __index="6" __sourcePath="{}/Case/IsClosed" containerType="SINGLE" label="IsClosed" name="IsClosed" type="boolean"/>
+<Field __implementationClass="java.lang.Boolean" __index="7" __sourcePath="{}/Case/IsClosedOnCreate" containerType="SINGLE" label="IsClosedOnCreate" name="IsClosedOnCreate" type="boolean"/>
+<Field __implementationClass="java.lang.Boolean" __index="19" __sourcePath="{}/Case/IsDeleted" containerType="SINGLE" label="IsDeleted" name="IsDeleted" type="boolean"/>
+<Field __implementationClass="java.lang.Boolean" __index="5" __sourcePath="{}/Case/IsEscalated" containerType="SINGLE" label="IsEscalated" name="IsEscalated" type="boolean"/>
+<Field __implementationClass="java.lang.Boolean" __index="48" __sourcePath="{}/Case/IsSelfServiceClosed" containerType="SINGLE" label="IsSelfServiceClosed" name="IsSelfServiceClosed" type="boolean"/>
+<Field __implementationClass="java.lang.Boolean" __index="29" __sourcePath="{}/Case/IsVisibleInSelfService" containerType="SINGLE" label="IsVisibleInSelfService" name="IsVisibleInSelfService" type="boolean"/>
+<Field __implementationClass="java.lang.String" __index="36" __sourcePath="{}/Case/LastModifiedById" containerType="SINGLE" label="LastModifiedById" name="LastModifiedById" type="string"/>
+<Field __dmType="Calendar" __implementationClass="java.util.Calendar" __index="2" __sourcePath="{}/Case/LastModifiedDate" containerType="SINGLE" label="LastModifiedDate" name="LastModifiedDate" type="string"/>
+<Field __dmType="Calendar" __implementationClass="java.util.Calendar" __index="35" __sourcePath="{}/Case/LastReferencedDate" containerType="SINGLE" label="LastReferencedDate" name="LastReferencedDate" type="string"/>
+<Field __dmType="Calendar" __implementationClass="java.util.Calendar" __index="14" __sourcePath="{}/Case/LastViewedDate" containerType="SINGLE" label="LastViewedDate" name="LastViewedDate" type="string"/>
+<Field __index="33" __sourcePath="{}/Case/Market_x005f_x005fc" containerType="SINGLE" label="Market__c" name="Market__c" type="string"/>
+<Field __index="3" __sourcePath="{}/Case/Origin" containerType="SINGLE" label="Origin" name="Origin" type="string"/>
+<Field __implementationClass="java.lang.Boolean" __index="10" __sourcePath="{}/Case/Out_x005fof_x005fHours_x005f_x005fc" containerType="SINGLE" label="Out_of_Hours__c" name="Out_of_Hours__c" type="boolean"/>
+<Field __implementationClass="java.lang.String" __index="25" __sourcePath="{}/Case/OwnerId" containerType="SINGLE" label="OwnerId" name="OwnerId" type="string"/>
+<Field __implementationClass="java.lang.String" __index="0" __sourcePath="{}/Case/ParentId" containerType="SINGLE" label="ParentId" name="ParentId" type="string"/>
+<Field __index="40" __sourcePath="{}/Case/Priority" containerType="SINGLE" label="Priority" name="Priority" type="string"/>
+<Field __index="32" __sourcePath="{}/Case/Reason" containerType="SINGLE" label="Reason" name="Reason" type="string"/>
+<Field __implementationClass="java.lang.String" __index="37" __sourcePath="{}/Case/Sapient_x005fCampaign_x005f_x005fc" containerType="SINGLE" label="Sapient_Campaign__c" name="Sapient_Campaign__c" type="string"/>
+<Field __implementationClass="java.lang.String" __index="42" __sourcePath="{}/Case/Sapient_x005fCorporate_x005f_x005fc" containerType="SINGLE" label="Sapient_Corporate__c" name="Sapient_Corporate__c" type="string"/>
+<Field __implementationClass="java.lang.String" __index="23" __sourcePath="{}/Case/Sapient_x005fDCS_x005fID_x005f_x005fc" containerType="SINGLE" label="Sapient_DCS_ID__c" name="Sapient_DCS_ID__c" type="string"/>
+<Field __implementationClass="java.lang.String" __index="43" __sourcePath="{}/Case/Sapient_x005fMicro_x005fSite_x005fID_x005f_x005fc" containerType="SINGLE" label="Sapient_Micro_Site_ID__c" name="Sapient_Micro_Site_ID__c" type="string"/>
+<Field __implementationClass="java.lang.Boolean" __index="18" __sourcePath="{}/Case/Set_x005fAssignment_x005fFields_x005f_x005fc" containerType="SINGLE" label="Set_Assignment_Fields__c" name="Set_Assignment_Fields__c" type="boolean"/>
+<Field __index="41" __sourcePath="{}/Case/Status" containerType="SINGLE" label="Status" name="Status" type="string"/>
+<Field __implementationClass="java.lang.String" __index="39" __sourcePath="{}/Case/Subject" containerType="SINGLE" label="Subject" name="Subject" type="string"/>
+<Field __implementationClass="java.lang.String" __index="47" __sourcePath="{}/Case/SuppliedCompany" containerType="SINGLE" label="SuppliedCompany" name="SuppliedCompany" type="string"/>
+<Field __implementationClass="java.lang.String" __index="15" __sourcePath="{}/Case/SuppliedEmail" containerType="SINGLE" label="SuppliedEmail" name="SuppliedEmail" type="string"/>
+<Field __implementationClass="java.lang.String" __index="28" __sourcePath="{}/Case/SuppliedName" containerType="SINGLE" label="SuppliedName" name="SuppliedName" type="string"/>
+<Field __implementationClass="java.lang.String" __index="26" __sourcePath="{}/Case/SuppliedPhone" containerType="SINGLE" label="SuppliedPhone" name="SuppliedPhone" type="string"/>
+<Field __dmType="Calendar" __implementationClass="java.util.Calendar" __index="31" __sourcePath="{}/Case/SystemModstamp" containerType="SINGLE" label="SystemModstamp" name="SystemModstamp" type="string"/>
+<Field __index="24" __sourcePath="{}/Case/Type" containerType="SINGLE" label="Type" name="Type" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/object" _dataStructure="OBJECT" _id="__id" _type="Input" id="8d0d61ec-6d66-4dfb-90e9-948791f4b08b">
+<Record fieldDelimiter="," name="object" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{}/object/locale" containerType="SINGLE" label="locale" name="locale" type="string"/>
+<Field __index="1" __sourcePath="{}/object/entity" containerType="SINGLE" label="entity" name="entity" type="string"/>
+<Field __index="2" __sourcePath="{}/object/contact/Id" containerType="SINGLE" label="Id" name="Id" type="string"/>
+<Field __index="3" __sourcePath="{}/object/contact/honorificPrefix" containerType="SINGLE" label="honorificPrefix" name="honorificPrefix" type="string"/>
+<Field __index="4" __sourcePath="{}/object/contact/givenName" containerType="SINGLE" label="givenName" name="givenName" type="string"/>
+<Field __index="5" __sourcePath="{}/object/contact/familyName" containerType="SINGLE" label="familyName" name="familyName" type="string"/>
+<Field __index="6" __sourcePath="{}/object/contact/streetAddress1" containerType="SINGLE" label="streetAddress1" name="streetAddress1" type="string"/>
+<Field __index="7" __sourcePath="{}/object/contact/streetAddress2" containerType="SINGLE" label="streetAddress2" name="streetAddress2" type="string"/>
+<Field __index="8" __sourcePath="{}/object/contact/locality" containerType="SINGLE" label="locality" name="locality" type="string"/>
+<Field __index="9" __sourcePath="{}/object/contact/region" containerType="SINGLE" label="region" name="region" type="string"/>
+<Field __index="10" __sourcePath="{}/object/contact/postalCode" containerType="SINGLE" label="postalCode" name="postalCode" type="string"/>
+<Field __index="11" __sourcePath="{}/object/contact/country" containerType="SINGLE" label="country" name="country" type="string"/>
+<Field __index="15" __sourcePath="{}/object/contact/languagePref" containerType="SINGLE" label="languagePref" name="languagePref" type="string"/>
+<Field __index="16" __sourcePath="{}/object/contact/email" containerType="SINGLE" label="email" name="email" type="string"/>
+<Field __index="17" __sourcePath="{}/object/contactUs/comments" containerType="SINGLE" label="comments" name="comments" type="string"/>
+<Field __index="18" __sourcePath="{}/object/contactUs/upcCode" containerType="SINGLE" label="upcCode" name="upcCode" type="string"/>
+<Field __index="19" __sourcePath="{}/object/contactUs/expiryDate" containerType="SINGLE" label="expiryDate" name="expiryDate" type="string"/>
+<Field __index="20" __sourcePath="{}/object/contactUs/manufacturingCode" containerType="SINGLE" label="manufacturingCode" name="manufacturingCode" type="string"/>
+<Field __index="21" __sourcePath="{}/object/contactUs/storeNamePurchasedFrom" containerType="SINGLE" label="storeNamePurchasedFrom" name="storeNamePurchasedFrom" type="string"/>
+<Field __index="22" __sourcePath="{}/object/contactUs/inquiryType" containerType="SINGLE" label="inquiryType" name="inquiryType" type="string"/>
+<Field __index="23" __sourcePath="{}/object/contactUs/upcCodeDetail" containerType="SINGLE" label="upcCodeDetail" name="upcCodeDetail" type="string"/>
+<Field __index="24" __sourcePath="{}/object/contactUs/manufacturingCodeDetail" containerType="SINGLE" label="manufacturingCodeDetail" name="manufacturingCodeDetail" type="string"/>
+<Field __index="25" __sourcePath="{}/object/optIn/brand" containerType="SINGLE" label="brand" name="brand" type="boolean"/>
+<Field __index="26" __sourcePath="{}/object/optIn/corporate" containerType="SINGLE" label="corporate" name="corporate" type="boolean"/>
+<Field __index="27" __sourcePath="{}/object/campaign" containerType="SINGLE" label="campaign" name="campaign" type="string"/>
+<Field __index="28" __sourcePath="{}/object/microSiteId" containerType="SINGLE" label="microSiteId" name="microSiteId" type="string"/>
+<Field __index="29" __sourcePath="{}/object/_x005fid" containerType="SINGLE" label="_id" name="_id" type="string"/>
+<Field __index="30" __sourcePath="{}/object/rowStatus" containerType="SINGLE" label="rowStatus" name="rowStatus" type="integer"/>
+<Field __index="31" __sourcePath="{}/object/info" containerType="SINGLE" label="info" name="info" type="string"/>
+<Field __index="32" __sourcePath="{}/object/modifiedDate" containerType="SINGLE" label="modifiedDate" name="modifiedDate" type="string"/>
+<Field __index="33" __sourcePath="{}/object/createdDate" containerType="SINGLE" label="createdDate" name="createdDate" type="string"/>
+</Record>
+</Metadata>
+<Metadata __index="12" __referenceCounter="1" __sourcePath="{}/object/contact/phoneNumbers" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _id="__id" _metadataParentId="8d0d61ec-6d66-4dfb-90e9-948791f4b08b" _parent_id="__parent_id" _type="Input" id="38967ffe-eb3d-4636-877d-9ceb79b45ab2">
+<Record fieldDelimiter="," name="phoneNumbers" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_parent_id" __systemManaged="true" name="__parent_id" type="string"/>
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="12" __sourcePath="{}/object/contact/phoneNumbers/value" containerType="SINGLE" label="value" name="value" type="string"/>
+<Field __index="13" __sourcePath="{}/object/contact/phoneNumbers/ext" containerType="SINGLE" label="ext" name="ext" type="string"/>
+<Field __index="14" __sourcePath="{}/object/contact/phoneNumbers/type" containerType="SINGLE" label="type" name="type" type="string"/>
+</Record>
+</Metadata>
+<Dictionary>
+<Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
+<Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
+<Entry dictval.__javaType="java.lang.String" id="DictionaryEntry2" input="false" name="Sapient_DCS_ID__c" output="true" type="string"/>
+</Dictionary>
+</Global>
+<Phase number="0">
+<Node enabled="enabled" guiName="Foreach 'object' -&gt; 'Case'" guiX="460" guiY="20" id="FOREACH_OBJECT_CASE" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+//END -> DO NOT REMOVE
+output.Description = "Comments :" + input.comments + "\nUPCCodeDetail : " + input.upcCodeDetail + "\nManufacturingCodeDetail :" + input.manufacturingCodeDetail + "\nStreetAddress1 : "+ input.streetAddress1 + "\nLocality : "+ input.locality + "\nRegion : "+ input.region + "\nPostalCode : "+ input.postalCode + "\nCountry : "+ input.country;
+output.Origin = "Web";
+output.Subject = input.inquiryType;
+output.SuppliedName = input.givenName + input.familyName;
+output.SuppliedEmail = input.email;
+outputArguments.Sapient_DCS_ID__c = input._id;
+output.Market__c = "United Kingdom";;]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Foreach 'phoneNumbers' -&gt; 'Case'" guiX="460" guiY="120" id="FOREACH_PHONE_NUMBERS_CASE" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = input.__id;
+//END -> DO NOT REMOVE
+output.Type = input.type;
+output.Description = input.value;]]></attr>
+</Node>
+<Node charset="UTF-8" enabled="enabled" fileURL="dict:inputPayload" guiName="JSON READER" guiX="20" guiY="20" id="JSON_READER0" type="JSON_READER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Context xpath="/root">
+  <Context outPort="0" sequenceField="__id" xpath="object">
+    <Mapping cloverField="locale" trim="true" xpath="locale"/>
+    <Mapping cloverField="entity" trim="true" xpath="entity"/>
+    <Mapping cloverField="Id" trim="true" xpath="contact/Id"/>
+    <Mapping cloverField="honorificPrefix" trim="true" xpath="contact/honorificPrefix"/>
+    <Mapping cloverField="givenName" trim="true" xpath="contact/givenName"/>
+    <Mapping cloverField="familyName" trim="true" xpath="contact/familyName"/>
+    <Mapping cloverField="streetAddress1" trim="true" xpath="contact/streetAddress1"/>
+    <Mapping cloverField="streetAddress2" trim="true" xpath="contact/streetAddress2"/>
+    <Mapping cloverField="locality" trim="true" xpath="contact/locality"/>
+    <Mapping cloverField="region" trim="true" xpath="contact/region"/>
+    <Mapping cloverField="postalCode" trim="true" xpath="contact/postalCode"/>
+    <Mapping cloverField="country" trim="true" xpath="contact/country"/>
+    <Mapping cloverField="languagePref" trim="true" xpath="contact/languagePref"/>
+    <Mapping cloverField="email" trim="true" xpath="contact/email"/>
+    <Mapping cloverField="comments" trim="true" xpath="contactUs/comments"/>
+    <Mapping cloverField="upcCode" trim="true" xpath="contactUs/upcCode"/>
+    <Mapping cloverField="expiryDate" trim="true" xpath="contactUs/expiryDate"/>
+    <Mapping cloverField="manufacturingCode" trim="true" xpath="contactUs/manufacturingCode"/>
+    <Mapping cloverField="storeNamePurchasedFrom" trim="true" xpath="contactUs/storeNamePurchasedFrom"/>
+    <Mapping cloverField="inquiryType" trim="true" xpath="contactUs/inquiryType"/>
+    <Mapping cloverField="upcCodeDetail" trim="true" xpath="contactUs/upcCodeDetail"/>
+    <Mapping cloverField="manufacturingCodeDetail" trim="true" xpath="contactUs/manufacturingCodeDetail"/>
+    <Mapping cloverField="brand" trim="true" xpath="optIn/brand"/>
+    <Mapping cloverField="corporate" trim="true" xpath="optIn/corporate"/>
+    <Mapping cloverField="campaign" trim="true" xpath="campaign"/>
+    <Mapping cloverField="microSiteId" trim="true" xpath="microSiteId"/>
+    <Mapping cloverField="_id" trim="true" xpath="_x005fid"/>
+    <Mapping cloverField="rowStatus" trim="true" xpath="rowStatus"/>
+    <Mapping cloverField="info" trim="true" xpath="info"/>
+    <Mapping cloverField="modifiedDate" trim="true" xpath="modifiedDate"/>
+    <Mapping cloverField="createdDate" trim="true" xpath="createdDate"/>
+    <Context generatedKey="__parent_id" outPort="1" parentKey="__id" sequenceField="__id" xpath="contact/phoneNumbers">
+      <Mapping cloverField="value" trim="true" xpath="value"/>
+      <Mapping cloverField="ext" trim="true" xpath="ext"/>
+      <Mapping cloverField="type" trim="true" xpath="type"/>
+    </Context>
+  </Context>
+</Context>
+]]></attr>
+<attr name="_data_format"><![CDATA[JSON]]></attr>
+<attr name="jsonSchemaURL"><![CDATA[./src/main/resources/contactus_sample.json]]></attr>
+</Node>
+<Node cacheInMemory="true" enabled="enabled" fileURL="dict:outputPayload" guiName="Map&lt;k,v&gt; WRITER" guiX="900" guiY="20" id="MAP_WRITER0" type="MAP_WRITER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<clover:collection clover:name="Case" xmlns:clover="http://www.cloveretl.com/ns/xmlmapping">
+  <item clover:inPort="0">
+    <ParentId clover:dataType="java.lang.String">$0.ParentId</ParentId>
+    <clover:element clover:name="Brand__c" clover:dataType="java.lang.String">$0.Brand__c</clover:element>
+    <LastModifiedDate clover:dataType="java.util.Calendar">$0.LastModifiedDate</LastModifiedDate>
+    <Origin>$0.Origin</Origin>
+    <HasSelfServiceComments clover:dataType="java.lang.Boolean">$0.HasSelfServiceComments</HasSelfServiceComments>
+    <IsEscalated clover:dataType="java.lang.Boolean">$0.IsEscalated</IsEscalated>
+    <IsClosed clover:dataType="java.lang.Boolean">$0.IsClosed</IsClosed>
+    <IsClosedOnCreate clover:dataType="java.lang.Boolean">$0.IsClosedOnCreate</IsClosedOnCreate>
+    <clover:element clover:name="Inconsistent_Case__c" clover:dataType="java.lang.Boolean">$0.Inconsistent_Case__c</clover:element>
+    <CaseNumber clover:dataType="java.lang.String">$0.CaseNumber</CaseNumber>
+    <clover:element clover:name="Out_of_Hours__c" clover:dataType="java.lang.Boolean">$0.Out_of_Hours__c</clover:element>
+    <clover:element clover:name="Alert_Action_Id__c" clover:dataType="java.lang.String">$0.Alert_Action_Id__c</clover:element>
+    <clover:element clover:name="Country__c">$0.Country__c</clover:element>
+    <BusinessHoursId clover:dataType="java.lang.String">$0.BusinessHoursId</BusinessHoursId>
+    <LastViewedDate clover:dataType="java.util.Calendar">$0.LastViewedDate</LastViewedDate>
+    <SuppliedEmail clover:dataType="java.lang.String">$0.SuppliedEmail</SuppliedEmail>
+    <AccountId clover:dataType="java.lang.String">$0.AccountId</AccountId>
+    <CreatedById clover:dataType="java.lang.String">$0.CreatedById</CreatedById>
+    <clover:element clover:name="Set_Assignment_Fields__c" clover:dataType="java.lang.Boolean">$0.Set_Assignment_Fields__c</clover:element>
+    <IsDeleted clover:dataType="java.lang.Boolean">$0.IsDeleted</IsDeleted>
+    <Id clover:dataType="java.lang.String">$0.Id</Id>
+    <clover:element clover:name="Action_Taken__c" clover:dataType="java.lang.String">$0.Action_Taken__c</clover:element>
+    <clover:element clover:name="Communication_Salutation__c" clover:dataType="java.lang.String">$0.Communication_Salutation__c</clover:element>
+    <clover:element clover:name="Sapient_DCS_ID__c" clover:dataType="java.lang.String">$0.Sapient_DCS_ID__c</clover:element>
+    <Type>$0.Type</Type>
+    <OwnerId clover:dataType="java.lang.String">$0.OwnerId</OwnerId>
+    <SuppliedPhone clover:dataType="java.lang.String">$0.SuppliedPhone</SuppliedPhone>
+    <clover:element clover:name="External_Image_Address__c" clover:dataType="java.lang.String">$0.External_Image_Address__c</clover:element>
+    <SuppliedName clover:dataType="java.lang.String">$0.SuppliedName</SuppliedName>
+    <IsVisibleInSelfService clover:dataType="java.lang.Boolean">$0.IsVisibleInSelfService</IsVisibleInSelfService>
+    <clover:element clover:name="Case_Brand_Mapping__c" clover:dataType="java.lang.String">$0.Case_Brand_Mapping__c</clover:element>
+    <SystemModstamp clover:dataType="java.util.Calendar">$0.SystemModstamp</SystemModstamp>
+    <Reason>$0.Reason</Reason>
+    <clover:element clover:name="Market__c">$0.Market__c</clover:element>
+    <Description clover:dataType="java.lang.String">$0.Description</Description>
+    <LastReferencedDate clover:dataType="java.util.Calendar">$0.LastReferencedDate</LastReferencedDate>
+    <LastModifiedById clover:dataType="java.lang.String">$0.LastModifiedById</LastModifiedById>
+    <clover:element clover:name="Sapient_Campaign__c" clover:dataType="java.lang.String">$0.Sapient_Campaign__c</clover:element>
+    <ClosedDate clover:dataType="java.util.Calendar">$0.ClosedDate</ClosedDate>
+    <Subject clover:dataType="java.lang.String">$0.Subject</Subject>
+    <Priority>$0.Priority</Priority>
+    <Status>$0.Status</Status>
+    <clover:element clover:name="Sapient_Corporate__c" clover:dataType="java.lang.String">$0.Sapient_Corporate__c</clover:element>
+    <clover:element clover:name="Sapient_Micro_Site_ID__c" clover:dataType="java.lang.String">$0.Sapient_Micro_Site_ID__c</clover:element>
+    <HasCommentsUnreadByOwner clover:dataType="java.lang.Boolean">$0.HasCommentsUnreadByOwner</HasCommentsUnreadByOwner>
+    <CreatedDate clover:dataType="java.util.Calendar">$0.CreatedDate</CreatedDate>
+    <ContactId clover:dataType="java.lang.String">$0.ContactId</ContactId>
+    <SuppliedCompany clover:dataType="java.lang.String">$0.SuppliedCompany</SuppliedCompany>
+    <IsSelfServiceClosed clover:dataType="java.lang.Boolean">$0.IsSelfServiceClosed</IsSelfServiceClosed>
+    <AssetId clover:dataType="java.lang.String">$0.AssetId</AssetId>
+  </item>
+  <item clover:inPort="1">
+    <ParentId clover:dataType="java.lang.String">$1.ParentId</ParentId>
+    <clover:element clover:name="Brand__c" clover:dataType="java.lang.String">$1.Brand__c</clover:element>
+    <LastModifiedDate clover:dataType="java.util.Calendar">$1.LastModifiedDate</LastModifiedDate>
+    <Origin>$1.Origin</Origin>
+    <HasSelfServiceComments clover:dataType="java.lang.Boolean">$1.HasSelfServiceComments</HasSelfServiceComments>
+    <IsEscalated clover:dataType="java.lang.Boolean">$1.IsEscalated</IsEscalated>
+    <IsClosed clover:dataType="java.lang.Boolean">$1.IsClosed</IsClosed>
+    <IsClosedOnCreate clover:dataType="java.lang.Boolean">$1.IsClosedOnCreate</IsClosedOnCreate>
+    <clover:element clover:name="Inconsistent_Case__c" clover:dataType="java.lang.Boolean">$1.Inconsistent_Case__c</clover:element>
+    <CaseNumber clover:dataType="java.lang.String">$1.CaseNumber</CaseNumber>
+    <clover:element clover:name="Out_of_Hours__c" clover:dataType="java.lang.Boolean">$1.Out_of_Hours__c</clover:element>
+    <clover:element clover:name="Alert_Action_Id__c" clover:dataType="java.lang.String">$1.Alert_Action_Id__c</clover:element>
+    <clover:element clover:name="Country__c">$1.Country__c</clover:element>
+    <BusinessHoursId clover:dataType="java.lang.String">$1.BusinessHoursId</BusinessHoursId>
+    <LastViewedDate clover:dataType="java.util.Calendar">$1.LastViewedDate</LastViewedDate>
+    <SuppliedEmail clover:dataType="java.lang.String">$1.SuppliedEmail</SuppliedEmail>
+    <AccountId clover:dataType="java.lang.String">$1.AccountId</AccountId>
+    <CreatedById clover:dataType="java.lang.String">$1.CreatedById</CreatedById>
+    <clover:element clover:name="Set_Assignment_Fields__c" clover:dataType="java.lang.Boolean">$1.Set_Assignment_Fields__c</clover:element>
+    <IsDeleted clover:dataType="java.lang.Boolean">$1.IsDeleted</IsDeleted>
+    <Id clover:dataType="java.lang.String">$1.Id</Id>
+    <clover:element clover:name="Action_Taken__c" clover:dataType="java.lang.String">$1.Action_Taken__c</clover:element>
+    <clover:element clover:name="Communication_Salutation__c" clover:dataType="java.lang.String">$1.Communication_Salutation__c</clover:element>
+    <clover:element clover:name="Sapient_DCS_ID__c" clover:dataType="java.lang.String">$1.Sapient_DCS_ID__c</clover:element>
+    <Type>$1.Type</Type>
+    <OwnerId clover:dataType="java.lang.String">$1.OwnerId</OwnerId>
+    <SuppliedPhone clover:dataType="java.lang.String">$1.SuppliedPhone</SuppliedPhone>
+    <clover:element clover:name="External_Image_Address__c" clover:dataType="java.lang.String">$1.External_Image_Address__c</clover:element>
+    <SuppliedName clover:dataType="java.lang.String">$1.SuppliedName</SuppliedName>
+    <IsVisibleInSelfService clover:dataType="java.lang.Boolean">$1.IsVisibleInSelfService</IsVisibleInSelfService>
+    <clover:element clover:name="Case_Brand_Mapping__c" clover:dataType="java.lang.String">$1.Case_Brand_Mapping__c</clover:element>
+    <SystemModstamp clover:dataType="java.util.Calendar">$1.SystemModstamp</SystemModstamp>
+    <Reason>$1.Reason</Reason>
+    <clover:element clover:name="Market__c">$1.Market__c</clover:element>
+    <Description clover:dataType="java.lang.String">$1.Description</Description>
+    <LastReferencedDate clover:dataType="java.util.Calendar">$1.LastReferencedDate</LastReferencedDate>
+    <LastModifiedById clover:dataType="java.lang.String">$1.LastModifiedById</LastModifiedById>
+    <clover:element clover:name="Sapient_Campaign__c" clover:dataType="java.lang.String">$1.Sapient_Campaign__c</clover:element>
+    <ClosedDate clover:dataType="java.util.Calendar">$1.ClosedDate</ClosedDate>
+    <Subject clover:dataType="java.lang.String">$1.Subject</Subject>
+    <Priority>$1.Priority</Priority>
+    <Status>$1.Status</Status>
+    <clover:element clover:name="Sapient_Corporate__c" clover:dataType="java.lang.String">$1.Sapient_Corporate__c</clover:element>
+    <clover:element clover:name="Sapient_Micro_Site_ID__c" clover:dataType="java.lang.String">$1.Sapient_Micro_Site_ID__c</clover:element>
+    <HasCommentsUnreadByOwner clover:dataType="java.lang.Boolean">$1.HasCommentsUnreadByOwner</HasCommentsUnreadByOwner>
+    <CreatedDate clover:dataType="java.util.Calendar">$1.CreatedDate</CreatedDate>
+    <ContactId clover:dataType="java.lang.String">$1.ContactId</ContactId>
+    <SuppliedCompany clover:dataType="java.lang.String">$1.SuppliedCompany</SuppliedCompany>
+    <IsSelfServiceClosed clover:dataType="java.lang.Boolean">$1.IsSelfServiceClosed</IsSelfServiceClosed>
+    <AssetId clover:dataType="java.lang.String">$1.AssetId</AssetId>
+  </item>
+</clover:collection>]]></attr>
+<attr name="_data_format"><![CDATA[MAP]]></attr>
+<attr name="__metadata"><![CDATA[true]]></attr>
+</Node>
+<Edge debugMode="true" fromNode="FOREACH_OBJECT_CASE:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="7dd7080d-5474-41e0-93d6-8892b076f117" outPort="Port 0 (out)" toNode="MAP_WRITER0:0"/>
+<Edge debugMode="true" fromNode="FOREACH_PHONE_NUMBERS_CASE:0" guiBendpoints="" id="Edge3" inPort="Port 1 (in)" metadata="7dd7080d-5474-41e0-93d6-8892b076f117" outPort="Port 0 (out)" toNode="MAP_WRITER0:1"/>
+<Edge debugMode="true" fromNode="JSON_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="8d0d61ec-6d66-4dfb-90e9-948791f4b08b" outPort="Port 0 (out)" toNode="FOREACH_OBJECT_CASE:0"/>
+<Edge debugMode="true" fromNode="JSON_READER0:1" guiBendpoints="" id="Edge2" inPort="Port 0 (in)" metadata="38967ffe-eb3d-4636-877d-9ceb79b45ab2" outPort="Port 1 (out)" toNode="FOREACH_PHONE_NUMBERS_CASE:0"/>
+</Phase>
+</Graph>
